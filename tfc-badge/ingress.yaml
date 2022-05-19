@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-tfc-badge
+  namespace: tfc-badge
+spec:
+  rules:
+  - host: tfc-badge.net.live.mindtastic.lol
+    http:
+      paths:
+        - backend:
+            serviceName: tfc-badge
+            servicePort: 3030
