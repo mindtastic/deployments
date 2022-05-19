@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
-    targetRevision: feat/argo-example
+    targetRevision: HEAD
     path: tfc-badge
   destination:
     server: https://kubernetes.default.svc
