@@ -5,7 +5,7 @@ metadata:
   namespace: tfc-badge
 spec:
   rules:
-  - host: tfc-badge.sam-app.ro
+  - host: tfc-badge.net.live.mindtastic.lol
     http:
       paths:
         - backend:
