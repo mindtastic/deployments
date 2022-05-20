@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
-    targetRevision: 0.3.0
+    targetRevision: HEAD
     path: postgres-operator
     helm:
       releaseName: postgres-operator
