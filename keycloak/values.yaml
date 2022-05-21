@@ -1,4 +1,5 @@
 name: keycloak
+namespace: keycloak
 
 enablePGO: false
 
