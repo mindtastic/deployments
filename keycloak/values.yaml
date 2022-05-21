@@ -1,5 +1,4 @@
 name: keycloak
-namespace: keycloak
 
 enablePGO: false
 
@@ -210,7 +209,7 @@ keycloak:
     createAdminUser: true
     ## @param auth.adminUser Keycloak administrator user
     ##
-    adminUser: admin
+    adminUser: user
     ## @param auth.adminPassword Keycloak administrator password for the new user
     ##
     adminPassword: ""
