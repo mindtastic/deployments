@@ -110,7 +110,7 @@ affinity: {}
 kratosAdminUrl: "http://kratos-admin.kratos"
 
 # -- Set this to ORY Kratos's public URL
-kratosPublicUrl: "http://kratos-public.kratos"
+kratosPublicUrl: "https://kratos.teleport.mindtastic.lol"
 
 # -- Set this to ORY Kratos's public URL accessible from the outside world.
 kratosBrowserUrl: "https://kratos.teleport.mindtastic.lol"

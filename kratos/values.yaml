@@ -231,7 +231,7 @@ ingress:
 kratos:
   development: true
   # -- Enable the initialization job. Required to work with a DB
-  autoMigrate: false
+  autoMigrate: true
 
   # -- You can add multiple identity schemas here
   # Example taken from https://github.com/ory/kratos/blob/master/identity/stub/extension.schema.json.
@@ -338,11 +338,29 @@ kratos:
     serve:
       public:
         port: 4433
+        base_url: "https://kratos.teleport.mindtastic.lol"
       admin:
         port: 4434
 
     selfservice:
-      default_browser_return_url: https://mindtastic.lol/fallback
+      default_browser_return_url: http://localhost:3000
+
+      methods:
+        password:
+          enabled: true
+        profile:
+          enabled: true
+
+      flows:
+        registration:
+          ui_url: http://localhost:3000/registration
+        login:
+          ui_url: http://localhost:3000/login
+        error:
+          ui_url: http://localhost:3000/error
+        logout:
+          after:
+            default_browser_return_url: https://google.com
 
     dsn: ""
     secrets: {}
