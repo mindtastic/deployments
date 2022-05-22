@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kratos
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: kratos
+    helm:
+      releaseName: kratos
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: kratos
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
