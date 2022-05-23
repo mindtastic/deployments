@@ -221,7 +221,7 @@ ingress:
       - host: kratos.mindtastic.lol
         paths:
           - path: /
-            #pathType: ImplementationSpecific
+            pathType: Prefix
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
@@ -369,15 +369,15 @@ deployment:
   # -- Configure the probes for when the deployment is considered ready and ongoing health check
   livenessProbe:
     httpGet:
-      path: /admin/health/alive
-      port: http-admin
+      path: /health/alive
+      port: http-public
     initialDelaySeconds: 30
     periodSeconds: 10
     failureThreshold: 5
   readinessProbe:
     httpGet:
-      path: /admin/health/ready
-      port: http-admin
+      path: /health/ready
+      port: http-public
     initialDelaySeconds: 30
     periodSeconds: 10
     failureThreshold: 5
