@@ -168,7 +168,7 @@ service:
     type: ClusterIP
     port: 80
     # -- The service port name. Useful to set a custom service port name if it must follow a scheme (e.g. Istio)
-    name: http
+    name: http-public
     # -- Provide custom labels. Use the same syntax as for annotations.
     labels: {}
     # -- If you do want to specify annotations, uncomment the following
@@ -221,7 +221,7 @@ ingress:
       - host: kratos.mindtastic.lol
         paths:
           - path: /
-            pathType: ImplementationSpecific
+            #pathType: ImplementationSpecific
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
