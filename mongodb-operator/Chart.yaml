@@ -14,9 +14,4 @@ home: https://github.com/mongodb/mongodb-kubernetes-operator
 maintainers:
 - name: MongoDB
   email: support@mongodb.com
-dependencies:
-- name: community-operator-crds
-  version: 0.7.3
-  repository: https://mongodb.github.io/helm-charts
-  condition: community-operator-crds.enabled
   
