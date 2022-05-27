@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mongodb-operator   
+  namespace: argocd 
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: mongodb-operator 
+    helm:
+      releaseName: mongodb-operator #TODO check again
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mongodb 
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
