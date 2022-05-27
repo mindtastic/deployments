@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: ghcr.io/mindtastic/user-service:4680aef187fc10ddc07530cf76f9dcb2b7ef253e
+        image: ghcr.io/mindtastic/user-service:8fa9d8ebee1ba41fe2b9a4fc833bd53a0cbfc4d3
         ports:
           - containerPort: 8000
         resources:
