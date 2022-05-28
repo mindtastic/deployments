@@ -218,7 +218,7 @@ ingress:
       kubernetes.io/ingress.class: gce
       #kubernetes.io/tls-acme: "true"
     hosts:
-      - host: kratos.mindtastic.lol
+      - host: auth.api.live.mindtastic.lol
         paths:
           - path: /
             pathType: Prefix
@@ -318,7 +318,7 @@ kratos:
     serve:
       public:
         port: 4433
-        base_url: "https://auth.api.live.mindtastic.lol"
+        base_url: "http://auth.api.live.mindtastic.lol"
       admin:
         port: 4434
 
