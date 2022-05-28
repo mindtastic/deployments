@@ -2,10 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    email: support@mongodb.com
-  labels:
-    owner: mongodb
   name: {{ .Values.operator.name }}
   namespace: {{ .Release.Namespace }}
 spec:
