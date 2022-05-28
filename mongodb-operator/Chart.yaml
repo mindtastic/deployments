@@ -10,7 +10,7 @@ keywords:
 - database
 - nosql
 icon: https://mongodb-images-new.s3.eu-west-1.amazonaws.com/leaf-green-dark.png
-home: https://github.com/mongodb/mongodb-kubernetes-operator
+# home: https://github.com/mongodb/mongodb-kubernetes-operator
 maintainers:
 - name: MongoDB
   email: support@mongodb.com

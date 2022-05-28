@@ -12,7 +12,7 @@ spec:
     targetRevision: HEAD
     path: mongodb-operator 
     helm:
-      releaseName: mongodb-operator #TODO check again
+      releaseName: mongodb-operator 
   destination:
     server: https://kubernetes.default.svc
     namespace: mongodb 
