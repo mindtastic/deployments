@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-live
+  namespace: argocd 
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: traefik
+    helm:
+      releaseName: traefik
+      valueFiles:
+      - values-live.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: traefik
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
