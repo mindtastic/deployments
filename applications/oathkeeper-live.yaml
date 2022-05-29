@@ -6,9 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    chart: oathkeeper
-    repoURL: https://k8s.ory.sh/helm/charts
-    targetRevision: 0.23.2
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
     path: oathkeeper
     helm:
       releaseName: oathkeeper
