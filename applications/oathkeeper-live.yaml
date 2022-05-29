@@ -1,19 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: keycloak
+  name: oathkeeper-live
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/mindtastic/deployments
-    targetRevision: HEAD
-    path: keycloak
+    chart: oathkeeper
+    repoURL: https://k8s.ory.sh/helm/charts
+    targetRevision: 0.23.2
+    path: oathkeeper
     helm:
-      releaseName: keycloak
+      releaseName: oathkeeper
+      valueFiles:
+      - values-live.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: keycloak
+    namespace: oathkeeper
   syncPolicy:
       syncOptions:
         - CreateNamespace=true
