@@ -1,0 +1,203 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  postgresVersion: {{ required "You must set the version of Postgres to deploy." .Values.postgres.postgresVersion }}
+  {{- if .Values.postgres.postGISVersion }}
+  postGISVersion: {{ quote .Values.postgres.postGISVersion }}
+  {{- end }}
+  {{- if .Values.postgres.imagePostgres }}
+  image: {{ .Values.postgres.imagePostgres | quote }}
+  {{- end }}
+  {{- if .Values.postgres.port }}
+  port: {{ .Values.postgres.port }}
+  {{- end }}
+  {{- if .Values.postgres.instances }}
+  instances:
+{{ toYaml .Values.postgres.instances | indent 4 }}
+  {{- else }}
+  instances:
+    - name: {{ default "instance1" .Values.postgres.instanceName | quote }}
+      replicas: {{ default 1 .Values.postgres.instanceReplicas }}
+      dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: {{ default "1Gi" .Values.postgres.instanceSize | quote }}
+      {{- if or .Values.postgres.instanceMemory .Values.postgres.instanceCPU }}
+      resources:
+        limits:
+          cpu: {{ default "" .Values.postgres.instanceCPU | quote }}
+          memory: {{ default "" .Values.postgres.instanceMemory | quote }}
+      {{- end }}
+  {{- end }}
+  backups:
+    pgbackrest:
+      {{- if .Values.postgres.imagePgBackRest }}
+      image: {{ .Values.postgres.imagePgBackRest | quote }}
+      {{- end }}
+      {{- if .Values.postgres.pgBackRestConfig }}
+{{ toYaml .Values.postgres.pgBackRestConfig | indent 6 }}
+      {{- else if .Values.postgres.multiBackupRepos }}
+      configuration:
+      - secret:
+          name: {{ .Release.Name }}-pgbackrest-secret
+      global:
+        {{- range $index, $repo := .Values.postgres.multiBackupRepos }}
+        {{- if or $repo.s3 $repo.gcs $repo.azure }}
+        repo{{ add $index 1 }}-path: /pgbackrest/{{ $.Release.Namespace }}/{{ $.Release.Name }}/repo{{ add $index 1 }}
+        {{- end }}
+        {{- end }}
+      repos:
+      {{- range $index, $repo := .Values.postgres.multiBackupRepos }}
+      - name: repo{{ add $index 1 }}
+        {{- if $repo.volume }}
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: {{ default "1Gi" $repo.volume.backupsSize | quote }}
+        {{- else if $repo.s3 }}
+        s3:
+          bucket: {{ $repo.s3.bucket | quote }}
+          endpoint: {{ $repo.s3.endpoint | quote }}
+          region: {{ $repo.s3.region | quote }}
+        {{- else if $repo.gcs }}
+        gcs:
+          bucket: {{ $repo.gcs.bucket | quote }}
+        {{- else if $repo.azure }}
+        azure:
+          container: {{ $repo.azure.container | quote }}
+        {{- end }}
+      {{- end }}
+      {{- else if .Values.postgres.s3 }}
+      configuration:
+      - secret:
+          name: {{ .Release.Name }}-pgbackrest-secret
+      global:
+        repo1-path: /pgbackrest/{{ .Release.Namespace }}/{{ .Release.Name }}/repo1
+        {{- if .Values.postgres.s3.encryptionPassphrase }}
+        repo1-cipher-type: aes-256-cbc
+        {{- end }}
+      repos:
+      - name: repo1
+        s3:
+          bucket: {{ .Values.postgres.s3.bucket | quote }}
+          endpoint: {{ .Values.postgres.s3.endpoint | quote }}
+          region: {{ .Values.postgres.s3.region | quote }}
+      {{- else if .Values.postgres.gcs }}
+      configuration:
+      - secret:
+          name: {{ .Release.Name }}-pgbackrest-secret
+      global:
+        repo1-path: /pgbackrest/{{ .Release.Namespace }}/{{ .Release.Name }}/repo1
+      repos:
+      - name: repo1
+        gcs:
+          bucket: {{ .Values.postgres.gcs.bucket | quote }}
+      {{- else if .Values.postgres.azure }}
+      configuration:
+      - secret:
+          name: {{ .Release.Name }}-pgbackrest-secret
+      global:
+        repo1-path: /pgbackrest/{{ .Release.Namespace }}/{{ .Release.Name }}/repo1
+      repos:
+      - name: repo1
+        azure:
+          container: {{ .Values.postgres.azure.container | quote }}
+      {{- else }}
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: {{ default "1Gi" .Values.postgres.backupsSize | quote }}
+      {{- end }}
+  {{- if or .Values.postgres.pgBouncerReplicas .Values.postgres.pgBouncerConfig }}
+  proxy:
+    pgBouncer:
+      {{- if .Values.postgres.imagePgBouncer }}
+      image: {{ .Values.postgres.imagePgBouncer | quote }}
+      {{- end }}
+      {{- if .Values.postgres.pgBouncerConfig }}
+{{ toYaml .Values.postgres.pgBouncerConfig | indent 6 }}
+      {{- else }}
+      replicas: {{ .Values.postgres.pgBouncerReplicas }}
+      {{- end }}
+  {{- end }}
+  {{- if .Values.postgres.patroni }}
+  patroni:
+{{ toYaml .Values.postgres.patroni | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.users }}
+  users:
+{{ toYaml .Values.postgres.users | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.service }}
+  service:
+{{ toYaml .Values.postgres.service | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.dataSource }}
+  service:
+{{ toYaml .Values.postgres.dataSource | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.databaseInitSQL }}
+  databaseInitSQL:
+    name: {{ required "A ConfigMap name is required for running bootstrap SQL." .Values.postgres.databaseInitSQL.name | quote }}
+    key: {{ required "A key in a ConfigMap containing any bootstrap SQL is required." .Values.postgres.databaseInitSQL.key | quote }}
+  {{- end }}
+  {{- if .Values.postgres.imagePullPolicy }}
+  imagePullPolicy: {{ .Values.postgres.imagePullPolicy | quote }}
+  {{- end }}
+  {{- if .Values.postgres.imagePullSecrets }}
+  imagePullSecrets:
+{{ toYaml .Values.postgres.imagePullSecrets | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.disableDefaultPodScheduling }}
+  disableDefaultPodScheduling: true
+  {{- end }}
+  {{- if .Values.postgres.metadata }}
+  metadata:
+{{ toYaml .Values.postgres.metadata | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.monitoring }}
+  monitoring:
+    pgmonitor:
+      exporter:
+        image: {{ default "" .Values.postgres.imageExporter | quote }}
+        {{- if .Values.postgres.monitoringConfig }}
+{{ toYaml .Values.postgres.monitoringConfig | indent 8 }}
+        {{- end }}
+  {{- end }}
+  {{- if .Values.postgres.shutdown }}
+  shutdown: true
+  {{- end }}
+  {{- if .Values.postgres.standby }}
+  standby:
+    enabled: {{ .Values.postgres.standby.enabled }}
+    repoName: {{ required "repoName must be set when enabling standby mode." .Values.postgres.standby.repoName }}
+  {{- end }}
+  {{- if .Values.postgres.supplementalGroups }}
+  supplementalGroups:
+{{ toYaml .Values.postgres.supplementalGroups | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.openshift }}
+  openshift: true
+  {{- else if eq .Values.postgres.openshift false }}
+  openshift: false
+  {{- end }}
+  {{- if .Values.postgres.customTLSSecret }}
+  customTLSSecret:
+{{ toYaml .Values.postgres.customTLSSecret | indent 4 }}
+  {{- end }}
+  {{- if .Values.postgres.customReplicationTLSSecret }}
+  customReplicationTLSSecret:
+{{ toYaml .Values.postgres.customReplicationTLSSecret | indent 4 }}
+  {{- end }}

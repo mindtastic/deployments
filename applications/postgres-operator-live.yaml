@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-operator-live
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: postgres-operator
+    helm:
+      releaseName: postgres-operator
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: postgres
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
