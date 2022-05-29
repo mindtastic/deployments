@@ -165,7 +165,7 @@ service:
     # kubernetes.io/tls-acme: "true"
   public:
     enabled: true
-    type: ClusterIP
+    type: NodePort
     port: 80
     # -- The service port name. Useful to set a custom service port name if it must follow a scheme (e.g. Istio)
     name: http-public
