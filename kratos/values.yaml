@@ -318,12 +318,12 @@ kratos:
     serve:
       public:
         port: 4433
-        base_url: "http://auth.api.live.mindtastic.lol"
+        base_url: "https://auth.api.live.mindtastic.lol"
       admin:
         port: 4434
 
     selfservice:
-      default_browser_return_url: http://auth-example.api.live.mindtastic.lol/
+      default_browser_return_url: https://auth-example.api.live.mindtastic.lol/
 
       methods:
         password:
@@ -333,14 +333,14 @@ kratos:
 
       flows:
         registration:
-          ui_url: http://auth.api.live.mindtastic.lol/registration
+          ui_url: https://auth-example.api.live.mindtastic.lol/registration
         login:
-          ui_url: http://auth.api.live.mindtastic.lol/login
+          ui_url: https://auth-example.api.live.mindtastic.lol/login
         error:
-          ui_url: http://auth.api.live.mindtastic.lol/error
+          ui_url: https://auth-example.api.live.mindtastic.lol/error
         logout:
           after:
-            default_browser_return_url: http://auth.api.live.mindtastic.lol
+            default_browser_return_url: https://auth-example.api.live.mindtastic.lol
 
     dsn: ""
     secrets: {}
