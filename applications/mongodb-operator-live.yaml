@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mongodb-operator   
+  name: mongodb-operator-live   
   namespace: argocd 
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,7 +12,9 @@ spec:
     targetRevision: HEAD
     path: mongodb-operator 
     helm:
-      releaseName: mongodb-operator 
+      releaseName: mongodb-operator
+      valueFiles:
+      - values-live.yaml 
   destination:
     server: https://kubernetes.default.svc
     namespace: mongodb 
