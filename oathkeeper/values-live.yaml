@@ -1,10 +1,13 @@
+oathkeeper-maester:
+  fullnameOverride: maester
+
 # -- Mode for oathkeeper controller
 # -- Two possible modes are: controller or sidecar
 global:
   ory:
     oathkeeper:
       maester:
-        mode: sidecar
+        mode: controller
 
 # -- Number of ORY Oathkeeper members
 replicaCount: 1
@@ -147,6 +150,12 @@ oathkeeper:
     access_rules:
       repositories:
         - file:///etc/rules/access-rules.json
+
+
+
+
+
+        
     serve:
       proxy:
         port: 4455
