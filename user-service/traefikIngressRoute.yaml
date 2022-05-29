@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: user-service-route
+  namespace: user-service
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`user-service.api.dev.mindtastic.lol`)
+    kind: Rule
+    services:
+    - name: user-service
+      port: 8000
+  tls:
+    certResolver: default
