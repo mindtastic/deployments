@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kratos-live
+  name: kratos-dev
   namespace: argocd
 spec:
   project: default
@@ -12,9 +12,9 @@ spec:
     helm:
       releaseName: kratos
       valueFiles:
-      - values-live.yaml      
+      - values-dev.yaml      
   destination:
-    server: "https://kubernetes.default.svc"
+    server: "https://cluster.net.dev.mindtastic.lol"
     namespace: kratos
   syncPolicy:
       syncOptions:
