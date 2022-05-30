@@ -261,7 +261,8 @@ additionalArguments: [
   "--certificatesresolvers.default.acme.email=jograeger@icloud.com",
   "--certificatesresolvers.default.acme.storage=/data/acme.json",
   "--certificatesresolvers.default.acme.tlschallenge=true",
-  "--providers.file.filename=/config/config.toml"
+  "--providers.file.filename=/config/config.toml",
+  "--entrypoints.websecure.http.middlewares=auth@file"
 ]
 #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
