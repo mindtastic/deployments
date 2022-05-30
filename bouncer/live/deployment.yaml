@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bouncer
+  namespace: bouncer
+  labels:
+    name: bouncer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bouncer
+  template:
+    metadata:
+      labels:
+        app: bouncer
+    spec:
+      containers:
+      - name: bouncer
+        image: ghcr.io/mindtastic/bouncer:ce05e66b5d72cc3312d3551fc52f6326e75afde9
+        ports:
+          - containerPort: 7666
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
