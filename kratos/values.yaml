@@ -215,7 +215,7 @@ ingress:
     enabled: true
     className: ""
     annotations:
-      # kubernetes.io/ingress.class: gce
+      kubernetes.io/ingress.class: traefik
       #kubernetes.io/tls-acme: "true"
     hosts:
       - host: auth.api.live.mindtastic.lol
