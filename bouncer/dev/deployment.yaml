@@ -17,11 +17,12 @@ spec:
     spec:
       containers:
       - name: bouncer
-        image: ghcr.io/mindtastic/bouncer:ce05e66b5d72cc3312d3551fc52f6326e75afde9
+        image: ghcr.io/mindtastic/bouncer:7e6f4a0f896832343da9b0c6362c6ed4a089070e
         command:
-          - "bouncer"
+          - "/bouncer"
           - "-addr=:7666"
           - "-downstream=http://kratos-public.kratos.svc.cluster.local"
+          - "-log=true"
         ports:
           - containerPort: 7666
         resources:
