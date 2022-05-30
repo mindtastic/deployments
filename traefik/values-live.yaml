@@ -1,3 +1,10 @@
+# Custom config file mapped by configmap.yaml
+config: |-
+  [http.middlewares]
+    [http.middlewares.auth.forwardAuth]
+      address = "http://oathkeeper-api.oathkeeper.svc.cluster.local:4456/decisions"
+      authResponseHeaders = "X-Id-Token,Authorization"
+
 # Default values for Traefik
 image:
   name: traefik
@@ -161,8 +168,10 @@ providers:
 # - "--providers.file.filename=/config/dynamic.toml"
 # - "--ping"
 # - "--ping.entrypoint=web"
-volumes: [
-]
+volumes: 
+  - name: "traefik"
+    mountPath: "/config"
+    type: configMap
 
 # - name: public-cert
 #   mountPath: "/certs"
@@ -251,7 +260,8 @@ globalArguments:
 additionalArguments: [
   "--certificatesresolvers.default.acme.email=jograeger@icloud.com",
   "--certificatesresolvers.default.acme.storage=/data/acme.json",
-  "--certificatesresolvers.default.acme.tlschallenge=true"
+  "--certificatesresolvers.default.acme.tlschallenge=true",
+  "--providers.file.filename=/config/config.toml"
 ]
 #  - "--providers.kubernetesingress.ingressclass=traefik-internal"
 #  - "--log.level=DEBUG"
