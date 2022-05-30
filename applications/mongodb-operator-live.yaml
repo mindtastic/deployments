@@ -19,9 +19,3 @@ spec:
   syncPolicy:
       syncOptions:
         - CreateNamespace=true
-  env:
-  - name: MONGODB_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: mongodb
-        key: mongodb-root-password
