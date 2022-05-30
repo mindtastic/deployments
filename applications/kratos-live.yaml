@@ -11,6 +11,8 @@ spec:
     path: kratos
     helm:
       releaseName: kratos
+      valueFiles:
+      - values-live.yaml      
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kratos

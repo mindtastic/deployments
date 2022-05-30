@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres-operator-live
+  name: kratos-dev
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: postgres-operator
+    path: kratos
     helm:
-      releaseName: postgres-operator
+      releaseName: kratos
       valueFiles:
-      - values-live.yaml      
+      - values-dev.yaml      
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: postgres
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: kratos
   syncPolicy:
       syncOptions:
         - CreateNamespace=true
