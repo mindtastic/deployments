@@ -1,19 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: keycloak-live
+  name: postgres-operator-dev
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: keycloak
+    path: postgres-operator
     helm:
-      releaseName: keycloak
+      releaseName: postgres-operator
+      valueFiles:
+      - values-dev.yaml      
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: keycloak
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: postgres
   syncPolicy:
       syncOptions:
         - CreateNamespace=true

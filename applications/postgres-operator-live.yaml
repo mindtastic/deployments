@@ -11,6 +11,8 @@ spec:
     path: postgres-operator
     helm:
       releaseName: postgres-operator
+      valueFiles:
+      - values-live.yaml      
   destination:
     server: "https://kubernetes.default.svc"
     namespace: postgres

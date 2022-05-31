@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kratos-live
-  namespace: argocd
+  name: traefik-dev
+  namespace: argocd 
 spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: kratos
+    path: traefik
     helm:
-      releaseName: kratos
+      releaseName: traefik
       valueFiles:
-      - values-live.yaml      
+      - values-dev.yaml
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: kratos
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: traefik
   syncPolicy:
-      syncOptions:
-        - CreateNamespace=true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kratos-selfservice-live
+  name: kratos-dev
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: kratos-selfservice
+    path: kratos
     helm:
-      releaseName: kratos-selfservice
+      releaseName: kratos
       valueFiles:
-      - values-live.yaml
+      - values-dev.yaml      
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: kratos-selfservice
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: kratos
   syncPolicy:
       syncOptions:
         - CreateNamespace=true
