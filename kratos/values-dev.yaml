@@ -333,6 +333,10 @@ kratos:
       flows:
         registration:
           ui_url: https://auth-example.api.dev.mindtastic.lol/registration
+          after:
+            password:
+              hooks:
+                - hook: session
         login:
           ui_url: https://auth-example.api.dev.mindtastic.lol/login
         error:
