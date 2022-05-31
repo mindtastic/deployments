@@ -344,14 +344,14 @@ kratos:
           after:
             hooks:
             # this array has to look like this. took me a f*** hour to realize
-#            - 
-#              hook: web_hook
-#              config:
-#                url: http://127.0.0.1:8888
-#                method: POST
-#                body: file:///etc/config/hooks.create-user.jsonnet
-#                response:
-#                  ignore: true
+            - 
+              hook: web_hook
+              config:
+                url: http://127.0.0.1:8888
+                method: POST
+                body: file:///etc/config/hooks.create-user.jsonnet
+                response:
+                  ignore: true
             - 
               hook: session
 
