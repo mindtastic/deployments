@@ -332,12 +332,14 @@ kratos:
 
       flows:
         registration:
+          lifespan: 15m
           ui_url: https://auth-example.api.dev.mindtastic.lol/registration
           after:
             password:
               hooks:
                 - hook: session
         login:
+          lifespan: 15m
           ui_url: https://auth-example.api.dev.mindtastic.lol/login
         error:
           ui_url: https://auth-example.api.dev.mindtastic.lol/error
