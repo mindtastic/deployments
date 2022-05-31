@@ -8,7 +8,7 @@ metadata:
 
 spec:
   rules:
-    - host: "user-service.api.live.mindtastic.lol"
+    - host: "users.api.live.mindtastic.lol"
       http:
         paths:
           - path: /
