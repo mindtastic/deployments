@@ -14,3 +14,7 @@ data:
   {{- with .Values.kratos.identitySchemas }}
     {{- toYaml . | nindent 2 }}
   {{- end }}
+  # Render hook body templates to disk:
+  {{- with .Values.kratos.webHookBodies }}
+    {{- toYaml . | nindent 2 }}
+  {{- end }}
