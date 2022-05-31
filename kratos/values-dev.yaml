@@ -365,7 +365,10 @@ kratos:
             default_browser_return_url: https://auth-example.api.dev.mindtastic.lol
 
     dsn: ""
-    secrets: {}
+    secrets:
+      cookie:
+      - A7Ngqk6hdl7WwMglzHLKqahPyfEjDUDD
+      - EFI9fkor8n5VGGAb5MCHpmKTJD6kx7QE
 
 ## -- Configuration options for the k8s deployment
 deployment:
