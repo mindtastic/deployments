@@ -3,10 +3,12 @@ kind: Ingress
 metadata:
   name: user-service-ingress
   namespace: user-service
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: auth@file
 
 spec:
   rules:
-    - host: "user-service.api.live.mindtastic.lol"
+    - host: "users.api.live.mindtastic.lol"
       http:
         paths:
           - path: /
