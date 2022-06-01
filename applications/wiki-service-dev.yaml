@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wiki-service-dev
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: wiki-service/dev
+  destination:
+    server: https://cluster.net.dev.mindtastic.lol
+    namespace: wiki-service # Namespace for your application
