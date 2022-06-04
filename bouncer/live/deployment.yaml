@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bouncer
-        image: ghcr.io/mindtastic/bouncer:7e6f4a0f896832343da9b0c6362c6ed4a089070e
+        image: ghcr.io/mindtastic/bouncer:50e98997524b4954c8a6706aadb0b006d9e9b13c
         command:
           - "/bouncer"
           - "-addr=:7666"
