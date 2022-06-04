@@ -23,7 +23,6 @@ podAnnotations: {}
 
 podCommand: 
 - "/bouncer"
-- "-addr=:7666"
 - "-downstream=http://kratos-public.kratos.svc.cluster.local"
 - "-log=true"
 

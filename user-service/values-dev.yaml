@@ -8,6 +8,8 @@ image:
 accessRule:
   matchPath: "https://users.api.dev.mindtastiuc.lol/user/<.+>"
   matchMethods: ["GET","PUT","DELETE","POST"]
+  kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
+  kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
 
 imagePullSecrets: []
 nameOverride: ""

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bouncer-dev
+  name: bouncer-live
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -16,5 +16,5 @@ spec:
       valueFiles:
       - values-live.yaml    
   destination:
-    server: https://cluster.net.dev.mindtastic.lol
+    server: "https://kubernetes.default.svc"
     namespace: bouncer # Namespace for your application
