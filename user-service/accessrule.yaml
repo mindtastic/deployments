@@ -1,0 +1,50 @@
+apiVersion: oathkeeper.ory.sh/v1alpha1
+kind: Rule
+metadata:
+  name: user-service-users
+  namespace: user-service
+spec:
+  match:
+    methods: ["GET","PUT","DELETE","POST"]
+    url: "https://users.api.dev.mindtastiuc.lol/user/<.+>"
+  authenticators:
+    - handler: bearer_token
+      config:
+        check_session_url: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
+        preserve_path: true
+        preserve_query: true
+        force_method: "GET"
+        extra_from: "@this"
+        subject_from: "identity.traits.accountKey"
+        token_from:
+          header: "Authorization"
+  authorizer:
+    handler: allow
+  mutators:
+  - handler: hydrator
+    config:
+      api:
+        url: http://koda.koda.svc.cluster.local:4133/
+        retry:
+          give_up_after: 2s
+          max_delay: 100ms
+      cache:
+        ttl: 60s
+  - handler: header
+    config:
+      headers:
+        X-User: '{{ print .Subject }}'
+        X-User-ID: '{{ print .Extra.userID }}'
+
+---
+apiVersion: oathkeeper.ory.sh/v1alpha1
+kind: Rule
+metadata:
+  name: user-service-admins
+  namespace: user-service
+spec:
+  match:
+    methods: ["GET","PUT","DELETE","POST"]
+    url: "https://users.api.dev.mindtastiuc.lol/user"
+  authenticators:
+    - handler: unauthorized

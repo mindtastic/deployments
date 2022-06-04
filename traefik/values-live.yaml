@@ -3,7 +3,7 @@ config: |-
   [http.middlewares]
     [http.middlewares.auth.forwardAuth]
       address = "http://oathkeeper-api.oathkeeper.svc.cluster.local:4456/decisions"
-      authResponseHeaders = "X-Id-Token,Authorization"
+      authResponseHeaders = "X-Id-Token,Authorization,X-USER-ID"
 
 # Default values for Traefik
 image:
