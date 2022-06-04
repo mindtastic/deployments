@@ -6,7 +6,7 @@ metadata:
 spec:
   match:
     methods: ["GET","PUT","DELETE","POST"]
-    url: "http://oathkeeper-api.oathkeeper.svc.cluster.local/user/<.+>"
+    url: "https://users.api.dev.mindtastiuc.lol/user/<.+>"
   authenticators:
     - handler: bearer_token
       config:
@@ -45,6 +45,6 @@ metadata:
 spec:
   match:
     methods: ["GET","PUT","DELETE","POST"]
-    url: "http://oathkeeper-api.oathkeeper.svc.cluster.local/user"
+    url: "https://users.api.dev.mindtastiuc.lol/user"
   authenticators:
     - handler: unauthorized
