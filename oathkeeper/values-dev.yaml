@@ -181,7 +181,7 @@ oathkeeper:
         enabled: true
         config:
           api:
-            url: http://koda.koda.svc.cluster.local:1433/
+            url: http://koda.koda.svc.cluster.local:4133/
             retry:
               give_up_after: 2s
               max_delay: 100ms
