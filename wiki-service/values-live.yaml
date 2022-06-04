@@ -1,13 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/mindtastic/user-service
+  repository: ghcr.io/mindtastic/wiki-service
   pullPolicy: IfNotPresent
-  tag: "de16448eb22182e40696e234d1510cc69dae5a4e"
-
-accessRule:
-  matchPath: "https://users.api.live.mindtastiuc.lol/user/<.+>"
-  matchMethods: ["GET","PUT","DELETE","POST"]
+  tag: "4f08ed2f67ce7f76424565c89c9bd6eb0fef202d"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -24,6 +20,14 @@ serviceAccount:
 
 podAnnotations: {}
 
+podEnv:
+- name: MONGODB_USER
+  value: ""
+- name: MONGODB_PASSWORD
+  value: ""
+- name: MONGODB_HOST
+  value: "mongodb.mongodb.svc.cluster.local"
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -37,19 +41,23 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8000
+  port: 5001
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
-  annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: auth@file
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: "users.api.live.mindtastic.lol"
+    - host: wiki.api.live.mindtastic.lol
       paths:
         - path: /
           pathType: Prefix
   tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources:
   limits:
