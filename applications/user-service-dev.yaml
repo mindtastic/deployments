@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bouncer-dev
+  name: user-service-dev
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,11 +10,11 @@ spec:
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: bouncer
+    path: user-service
     helm:
-      releaseName: bouncer
+      releaseName: user-service
       valueFiles:
-      - values-live.yaml    
+      - values-dev.yaml    
   destination:
     server: https://cluster.net.dev.mindtastic.lol
-    namespace: bouncer # Namespace for your application
+    namespace: user-service # Namespace for your application
