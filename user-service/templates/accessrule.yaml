@@ -1,12 +1,11 @@
 apiVersion: oathkeeper.ory.sh/v1alpha1
 kind: Rule
 metadata:
-  name: user-service-users
-  namespace: user-service
+  name: {{ include "user-service.fullname" . }}
 spec:
   match:
-    methods: ["GET","PUT","DELETE","POST"]
-    url: "https://users.api.dev.mindtastiuc.lol/user/<.+>"
+    methods: {{ .Values.matchMethods }}
+    url: {{ .Values.matchPath }}
   authenticators:
     - handler: bearer_token
       config:
@@ -33,18 +32,5 @@ spec:
   - handler: header
     config:
       headers:
-        X-User: '{{ print .Subject }}'
-        X-User-ID: '{{ print .Extra.userID }}'
-
----
-apiVersion: oathkeeper.ory.sh/v1alpha1
-kind: Rule
-metadata:
-  name: user-service-admins
-  namespace: user-service
-spec:
-  match:
-    methods: ["GET","PUT","DELETE","POST"]
-    url: "https://users.api.dev.mindtastiuc.lol/user"
-  authenticators:
-    - handler: unauthorized
+        X-User: '{{`{{ print .Subject }}`}}'
+        X-User-ID: '{{`{{ print .Extra.userID }}`}}'
