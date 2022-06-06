@@ -303,13 +303,6 @@ kratos:
   #        body:
   #        plainBody:
 
-  #TODO: Review
-#  webHookBodies:
-#    "hooks.create-user.jsonnet": |
-#      function(ctx) { 
-#        body: ctx.identity
-#      }
-
   config:
     identity:
       schemas:
@@ -343,15 +336,7 @@ kratos:
           ui_url: https://auth-example.api.dev.mindtastic.lol/registration
           after:
             hooks:
-            # this array has to look like this. took me a f*** hour to realize
-#            - 
-#              hook: web_hook
-#              config:
-#                url: http://127.0.0.1:8888
-#                method: POST
-#                body: file:///etc/config/hooks.create-user.jsonnet
-#                response:
-#                  ignore: true
+            # this array has to look like this.
             - 
               hook: session
 
@@ -365,6 +350,8 @@ kratos:
             default_browser_return_url: https://auth-example.api.dev.mindtastic.lol
 
     dsn: ""
+
+    # Dummy cookies that have to be set for the session hook to work. These cookies are dummies and do not actually do anything. See https://www.ory.sh/docs/kratos/self-service/hooks
     secrets:
       cookie:
       - A7Ngqk6hdl7WwMglzHLKqahPyfEjDUDD
