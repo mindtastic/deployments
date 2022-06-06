@@ -4,7 +4,10 @@ metadata:
   name: {{ include "user-service.fullname" . }}
 spec:
   match:
-    methods: {{ .Values.accessRule.matchMethods }}
+    methods: 
+      {{- range .Values.accessRule.matchMethods }}
+      - {{ . }}
+      {{- end }}
     url: {{ .Values.accessRule.matchPath }}
   authenticators:
     - handler: bearer_token

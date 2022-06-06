@@ -157,7 +157,7 @@ oathkeeper:
         - file:///etc/rules/access-rules.json
     
     log:
-      level: trace
+      level: info
     
     authenticators:
       unauthorized:
