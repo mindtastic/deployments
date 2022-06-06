@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/mindtastic/user-service
   pullPolicy: IfNotPresent
-  tag: "3b831765c0787b653c2915628553ed92992c4bbc"
+  tag: "31921bf428d15da5cf51e6bd21030527e1f0c07a"
 
 accessRule:
   matchPath: "https://users.api.live.mindtastiuc.lol/user/<.+>"
