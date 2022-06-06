@@ -43,7 +43,7 @@ service:
 
 ingress:
   enabled: true
-  className: ""
+  className: "traefik"
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: auth@file
   hosts:
