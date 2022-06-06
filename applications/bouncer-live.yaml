@@ -10,7 +10,11 @@ spec:
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: bouncer/live
+    path: bouncer
+    helm:
+      releaseName: bouncer
+      valueFiles:
+      - values-live.yaml    
   destination:
-    server: https://kubernetes.default.svc
+    server: "https://kubernetes.default.svc"
     namespace: bouncer # Namespace for your application

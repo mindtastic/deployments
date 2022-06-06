@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wiki-service-dev
+  name: wiki-service-live
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -14,7 +14,7 @@ spec:
     helm:
       releaseName: wiki-service
       valueFiles:
-      - values-dev.yaml    
+      - values-live.yaml    
   destination:
-    server: https://cluster.net.dev.mindtastic.lol
+    server: https://kubernetes.default.svc
     namespace: wiki-service # Namespace for your application

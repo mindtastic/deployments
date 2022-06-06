@@ -10,7 +10,11 @@ spec:
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: bouncer/dev
+    path: bouncer
+    helm:
+      releaseName: bouncer
+      valueFiles:
+      - values-dev.yaml    
   destination:
     server: https://cluster.net.dev.mindtastic.lol
     namespace: bouncer # Namespace for your application

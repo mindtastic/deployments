@@ -1,9 +1,15 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/mindtastic/koda
+  repository: ghcr.io/mindtastic/user-service
   pullPolicy: IfNotPresent
-  tag: "9bd7edaad6fe82fb42f66993df14d2bd0163d490"
+  tag: "de16448eb22182e40696e234d1510cc69dae5a4e"
+
+accessRule:
+  matchPath: "https://users.api.dev.mindtastiuc.lol/user/<.+>"
+  matchMethods: ["GET","PUT","DELETE","POST"]
+  kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
+  kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
 
 imagePullSecrets: []
 nameOverride: ""
@@ -33,17 +39,18 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 4133
+  port: 8000
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
-  annotations: {}
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: auth@file
   hosts:
-    - host: chart-example.local
+    - host: "users.api.dev.mindtastic.lol"
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
 
 resources:
