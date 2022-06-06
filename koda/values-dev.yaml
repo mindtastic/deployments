@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/mindtastic/koda
   pullPolicy: IfNotPresent
-  tag: "dev-8cacb00734a9199e256a9b546665893a2c373e0a"
+  tag: "dev-e03135e81a9b3d0a2ba88a76b98348ebebf12c6a"
 
 persistence:
   enabled: true
