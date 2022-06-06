@@ -332,8 +332,16 @@ kratos:
 
       flows:
         registration:
+          lifespan: 15m
           ui_url: https://auth-example.api.dev.mindtastic.lol/registration
+          after:
+            hooks:
+            # this array has to look like this.
+            - 
+              hook: session
+
         login:
+          lifespan: 15m
           ui_url: https://auth-example.api.dev.mindtastic.lol/login
         error:
           ui_url: https://auth-example.api.dev.mindtastic.lol/error
@@ -342,7 +350,12 @@ kratos:
             default_browser_return_url: https://auth-example.api.dev.mindtastic.lol
 
     dsn: ""
-    secrets: {}
+
+    # Dummy cookies that have to be set for the session hook to work. These cookies are dummies and do not actually do anything. See https://www.ory.sh/docs/kratos/self-service/hooks
+    secrets:
+      cookie:
+      - A7Ngqk6hdl7WwMglzHLKqahPyfEjDUDD
+      - EFI9fkor8n5VGGAb5MCHpmKTJD6kx7QE
 
 ## -- Configuration options for the k8s deployment
 deployment:
