@@ -18,3 +18,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: user-service # Namespace for your application
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true

@@ -18,3 +18,6 @@ spec:
   destination:
     server: https://cluster.net.dev.mindtastic.lol
     namespace: user-service # Namespace for your application
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
