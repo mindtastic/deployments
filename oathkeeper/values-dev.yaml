@@ -156,6 +156,9 @@ oathkeeper:
       repositories:
         - file:///etc/rules/access-rules.json
     
+    log:
+      level: trace
+    
     authenticators:
       unauthorized:
         enabled: true
