@@ -212,7 +212,7 @@ ingress:
     #    hosts:
     #      - chart-example.local
   public:
-    enabled: false
+    enabled: true
     className: ""
     annotations:
       kubernetes.io/ingress.class: traefik
