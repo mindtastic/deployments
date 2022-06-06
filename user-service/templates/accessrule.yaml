@@ -36,4 +36,4 @@ spec:
     config:
       headers:
         X-User: '{{`{{ print .Subject }}`}}'
-        X-User-ID: '{{`{{ print .Extra.userID }}`}}'
+        X-User-Id: '{{`{{ print .Extra.userID }}`}}'

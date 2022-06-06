@@ -194,7 +194,7 @@ oathkeeper:
         enabled: true
         config:
           headers:
-            X-User-ID: "YOU-ARE-MISSING-AN-ACCESS-RULE"
+            X-User-Id-Fallback: "YOU-ARE-MISSING-AN-ACCESS-RULE"
       
     serve:
       proxy:
