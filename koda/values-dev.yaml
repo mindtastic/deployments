@@ -5,6 +5,10 @@ image:
   pullPolicy: IfNotPresent
   tag: "9bd7edaad6fe82fb42f66993df14d2bd0163d490"
 
+persistence:
+  enabled: true
+  storageRequest: 1Gi
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
