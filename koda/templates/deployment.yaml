@@ -48,7 +48,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{ if .Values.persistence.enabled -}}
-          volumeMount:
+          volumeMounts:
             mountPath: "/data"
             name: local-persistence
           {{- end }}
