@@ -1,21 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres-operator-live
+  name: wiki-service-live
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: postgres-operator
+    path: wiki-service
     helm:
-      releaseName: postgres-operator
+      releaseName: wiki-service
       valueFiles:
-      - values-live.yaml      
+      - values-live.yaml    
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: postgres
+    server: https://kubernetes.default.svc
+    namespace: wiki-service # Namespace for your application
   syncPolicy:
       syncOptions:
         - CreateNamespace=true

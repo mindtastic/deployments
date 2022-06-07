@@ -1,0 +1,36 @@
+apiVersion: oathkeeper.ory.sh/v1alpha1
+kind: Rule
+metadata:
+  name: {{ include "user-service.fullname" . }}
+spec:
+  match:
+    methods: {{ .Values.accessRule.matchMethods }}
+    url: {{ .Values.accessRule.matchPath }}
+  authenticators:
+    - handler: bearer_token
+      config:
+        check_session_url: {{ .Values.accessRule.kratosCheckSessionURL }}
+        preserve_path: true
+        preserve_query: true
+        force_method: "GET"
+        extra_from: "@this"
+        subject_from: "identity.traits.accountKey"
+        token_from:
+          header: "Authorization"
+  authorizer:
+    handler: allow
+  mutators:
+  - handler: hydrator
+    config:
+      api:
+        url: {{ .Values.accessRule.kodaHydratorURL }}
+        retry:
+          give_up_after: 2s
+          max_delay: 100ms
+      cache:
+        ttl: 60s
+  - handler: header
+    config:
+      headers:
+        X-User: '{{`{{ print .Subject }}`}}'
+        X-User-ID: '{{`{{ print .Extra.userID }}`}}'

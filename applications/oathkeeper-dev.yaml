@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres-operator-live
+  name: oathkeeper-dev
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: postgres-operator
+    path: oathkeeper
     helm:
-      releaseName: postgres-operator
+      releaseName: oathkeeper
       valueFiles:
-      - values-live.yaml      
+      - values-dev.yaml
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: postgres
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: oathkeeper
   syncPolicy:
       syncOptions:
         - CreateNamespace=true

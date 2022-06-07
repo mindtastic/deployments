@@ -1,21 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres-operator-live
+  name: bouncer-dev
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
-    path: postgres-operator
+    path: bouncer
     helm:
-      releaseName: postgres-operator
+      releaseName: bouncer
       valueFiles:
-      - values-live.yaml      
+      - values-dev.yaml    
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: postgres
+    server: https://cluster.net.dev.mindtastic.lol
+    namespace: bouncer # Namespace for your application
   syncPolicy:
       syncOptions:
         - CreateNamespace=true

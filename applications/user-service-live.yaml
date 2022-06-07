@@ -11,6 +11,13 @@ spec:
     repoURL: https://github.com/mindtastic/deployments
     targetRevision: HEAD
     path: user-service
+    helm:
+      releaseName: user-service
+      valueFiles:
+      - values-live.yaml    
   destination:
     server: https://kubernetes.default.svc
     namespace: user-service # Namespace for your application
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true

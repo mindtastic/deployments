@@ -1,0 +1,6 @@
+dependencies:
+- name: oathkeeper-maester
+  repository: https://k8s.ory.sh/helm/charts
+  version: 0.23.2
+digest: sha256:78514aab99539518268d3263bf9850f86d830e1f7bdd3eab1c42354068cee18d
+generated: "2022-06-04T14:03:25.761619+02:00"
