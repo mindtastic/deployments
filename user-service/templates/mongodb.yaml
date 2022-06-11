@@ -11,12 +11,12 @@ spec:
       modes: ["SCRAM"]
   users:
     - name: {{ .Values.database.username }}
-      db: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+      db: {{ .Values.database.name }}
       passwordSecretRef: # a reference to the secret that will be used to generate the user's password
         name: mongodb-initial-secret
       roles:
         - name: readWrite
-          db: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+          db: {{ .Values.database.name }}
       scramCredentialsSecretName: mongodb-scram-secret
   additionalMongodConfig:
     storage.wiredTiger.engineConfig.journalCompressor: zlib
