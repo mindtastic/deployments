@@ -46,15 +46,13 @@ stringData:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
-  namespace: {{ .Release.Namespace }}
+  name: mongodb-database
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
-  namespace: {{ .Release.Namespace }}
+  name: mongodb-database
 rules:
   - apiGroups:
       - ""
@@ -75,12 +73,11 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
-  namespace: {{ .Release.Namespace }}
+  name: mongodb-database
 subjects:
   - kind: ServiceAccount
-    name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+    name: mongodb-database
 roleRef:
   kind: Role
-  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+  name: mongodb-database
   apiGroup: rbac.authorization.k8s.io
