@@ -1,8 +1,8 @@
 replicaCount: 1
 
 database:
-  name: admin
-  username: test-user
+  name: users
+  username: user-service
   members: 1
   agent:
     resources:
