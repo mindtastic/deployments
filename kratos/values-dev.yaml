@@ -336,9 +336,7 @@ kratos:
           ui_url: https://auth-example.api.dev.mindtastic.lol/registration
           after:
             hooks:
-            # this array has to look like this.
-            - 
-              hook: session
+            - hook: session
 
         login:
           lifespan: 15m
