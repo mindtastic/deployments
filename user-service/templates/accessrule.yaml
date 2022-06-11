@@ -4,7 +4,10 @@ metadata:
   name: {{ include "user-service.fullname" . }}
 spec:
   match:
-    methods: {{ .Values.accessRule.matchMethods }}
+    methods: 
+      {{- range .Values.accessRule.matchMethods }}
+      - {{ . }}
+      {{- end }}
     url: {{ .Values.accessRule.matchPath }}
   authenticators:
     - handler: bearer_token
@@ -33,4 +36,4 @@ spec:
     config:
       headers:
         X-User: '{{`{{ print .Subject }}`}}'
-        X-User-ID: '{{`{{ print .Extra.userID }}`}}'
+        X-User-Id: '{{`{{ print .Extra.userID }}`}}'
