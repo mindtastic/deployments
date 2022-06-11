@@ -50,7 +50,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ printf "%s-%s-%s" .Chart.Name .Values.database.name .Values.database.username }} 
-                  key: connectionString.standardSrv
+                  key: connectionString.standard
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
