@@ -19,10 +19,10 @@ operator:
   # Resources allocated to Operator Pod
   resources:
     limits:
-      cpu: 1100m
-      memory: 1Gi
+      cpu: 50m
+      memory: 512Mi
     requests:
-      cpu: 500m
+      cpu: 50m
       memory: 200Mi
 
   # Additional environment variables

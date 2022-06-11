@@ -306,8 +306,8 @@ kratos:
   config:
     identity:
       schemas:
-      - id: user
-        url: file:///etc/config/schema.user.json
+        - id: user
+          url: file:///etc/config/schema.user.json
       default_schema_id: user
     courier:
       smtp:
@@ -337,7 +337,7 @@ kratos:
           after:
             password:
               hooks:
-              - hook: session
+                - hook: session
 
         login:
           lifespan: 15m
@@ -353,8 +353,8 @@ kratos:
     # Dummy cookies that have to be set for the session hook to work. These cookies are dummies and do not actually do anything. See https://www.ory.sh/docs/kratos/self-service/hooks
     secrets:
       cookie:
-      - A7Ngqk6hdl7WwMglzHLKqahPyfEjDUDD
-      - EFI9fkor8n5VGGAb5MCHpmKTJD6kx7QE
+        - A7Ngqk6hdl7WwMglzHLKqahPyfEjDUDD
+        - EFI9fkor8n5VGGAb5MCHpmKTJD6kx7QE
 
 ## -- Configuration options for the k8s deployment
 deployment:
