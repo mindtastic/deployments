@@ -1,0 +1,86 @@
+apiVersion: mongodbcommunity.mongodb.com/v1
+kind: MongoDBCommunity
+metadata:
+  name: {{ include "user-service.fullname" . }}
+spec:
+  members: {{default .Values.database.members 1}}
+  type: ReplicaSet
+  version: "4.2.6"
+  security:
+    authentication:
+      modes: ["SCRAM"]
+  users:
+    - name: {{ .Values.database.username }}
+      db: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+      passwordSecretRef: # a reference to the secret that will be used to generate the user's password
+        name: mongodb-initial-secret
+      roles:
+        - name: readWrite
+          db: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+      scramCredentialsSecretName: mongodb-scram-secret
+  additionalMongodConfig:
+    storage.wiredTiger.engineConfig.journalCompressor: zlib
+  statefulSet:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: "mongodb-agent"
+              resources:
+                {{- toYaml .Values.database.agent.resources | nindent 16 }}
+            - name: "mongod"
+              resources:
+                {{- toYaml .Values.database.mongod.resources | nindent 16 }}
+
+# the user credentials will be generated from this secret
+# once the credentials are generated, this secret is no longer required
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-initial-secret
+type: Opaque
+stringData:
+  password: {{ randAlphaNum 20 | b64enc | quote }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+  namespace: {{ .Release.Namespace }}
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+  namespace: {{ .Release.Namespace }}
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - get
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - patch
+      - delete
+      - get
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+  namespace: {{ .Release.Namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+roleRef:
+  kind: Role
+  name: {{ printf "%s-%s" .Values.database.name "mongodb" }}
+  apiGroup: rbac.authorization.k8s.io
