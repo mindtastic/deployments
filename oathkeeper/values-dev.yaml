@@ -21,7 +21,7 @@ image:
   # -- ORY Oathkeeper image
   repository: oryd/oathkeeper
   # -- ORY Oathkeeper version
-  tag: v0.38.19-beta.1
+  tag: v0.38.25-beta.1
   # -- Image pull policy
   pullPolicy: IfNotPresent
 
@@ -156,6 +156,9 @@ oathkeeper:
       repositories:
         - file:///etc/rules/access-rules.json
     
+    log:
+      level: info
+    
     authenticators:
       unauthorized:
         enabled: true
@@ -191,7 +194,7 @@ oathkeeper:
         enabled: true
         config:
           headers:
-            X-User-ID: "YOU-ARE-MISSING-AN-ACCESS-RULE"
+            X-User-Id-Fallback: "YOU-ARE-MISSING-AN-ACCESS-RULE"
       
     serve:
       proxy:
