@@ -45,6 +45,12 @@ spec:
             httpGet:
               path: /health
               port: http
+          env:
+            - name: "CONNECTION_STRING"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-%s-%s" .Chart.Name .Values.database.name .Values.database.username }} 
+                  key: connectionString.standard
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
