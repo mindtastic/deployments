@@ -343,7 +343,7 @@ kratos:
           lifespan: 15m
           ui_url: https://auth-example.api.dev.mindtastic.lol/login
         error:
-          ui_url: https://auth-example.api.dev.mindtastic.lol/error
+          ui_url: https://auth-example.api.live.mindtastic.lol/error
         logout:
           after:
             default_browser_return_url: https://auth-example.api.dev.mindtastic.lol
