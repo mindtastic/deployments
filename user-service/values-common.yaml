@@ -1,0 +1,96 @@
+replicaCount: 1
+
+database:
+  name: users
+  username: user-service
+  members: 1
+  agent:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+  mongod:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+
+image:
+  repository: ghcr.io/mindtastic/user-service
+  pullPolicy: IfNotPresent
+  tag: "dev-1a6f0c13b79996d15a9a8c13fc2a82089b3c5fca"
+
+accessRule:
+  matchPath: "https://users.api.dev.mindtastic.lol/user/<.+>"
+  matchMethods: ["GET","PUT","DELETE","POST"]
+  kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
+  kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8000
+
+ingress:
+  enabled: true
+  className: "traefik"
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: auth@file
+  hosts:
+    - host: "users.api.dev.mindtastic.lol"
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -12,6 +12,7 @@ spec:
     helm:
       releaseName: postgres-operator
       valueFiles:
+      - values-common.yaml
       - values-live.yaml      
   destination:
     server: "https://kubernetes.default.svc"
@@ -19,3 +20,5 @@ spec:
   syncPolicy:
       syncOptions:
         - CreateNamespace=true
+        - Replace=true
+

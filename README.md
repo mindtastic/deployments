@@ -44,6 +44,6 @@ spec:
 
 This repository is (mostly) fully automated. It follows ArgoCD's "[App-of-Apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/)" pattern, albeit with small differences.
 
-`./umbrella.yaml` deploys an ArgoCD application which creates all other applications stored in `./applications`.
+`./applications.yaml` deploys an ArgoCD application which creates all other applications stored in `./applications`.
 
-When bootstrapping a new Cluster, `umbrella.yaml` needs to be applied manually. After that it automatically adds all new applications added without any need to sync `umbrella` again.
+When bootstrapping a new Cluster, `applications.yaml` needs to be applied manually. After that it automatically adds all new applications added without any need to sync `applications` again.
