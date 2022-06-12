@@ -1,3 +1,4 @@
 oathkeeper:
-  log:
-    level: info
+  config:
+    log:
+      level: info

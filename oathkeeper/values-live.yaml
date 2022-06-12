@@ -1,3 +1,4 @@
 oathkeeper:
-  log:
-    level: warning
+  config:
+    log:
+      level: warning
