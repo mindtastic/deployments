@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns-dev
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: external-dns
+    helm:
+      releaseName: external-dns
+      valueFiles:
+      - values-common.yaml
+      - values-dev.yaml    
+  destination:
+    server: https://cluster.net.dev.mindtastic.lol
+    namespace: external-dns # Namespace for your application
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true

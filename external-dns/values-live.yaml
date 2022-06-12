@@ -1,0 +1,14 @@
+logLevel: warning
+logFormat: text
+
+interval: 1m
+triggerLoopOnEvent: true
+
+sources:
+  - ingress
+
+policy: upsert-only
+
+domainFilters:
+  - api.live.mindtastic.lol
+  - net.live.mindtastic.lol
