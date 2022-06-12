@@ -346,7 +346,7 @@ kratos:
           ui_url: https://auth-example.api.live.mindtastic.lol/error
         logout:
           after:
-            default_browser_return_url: https://auth-example.api.dev.mindtastic.lol
+            default_browser_return_url: https://auth-example.api.live.mindtastic.lol
 
     dsn: ""
     # Dummy cookies that have to be set for the session hook to work. These cookies are dummies and do not actually do anything. See https://www.ory.sh/docs/kratos/self-service/hooks
