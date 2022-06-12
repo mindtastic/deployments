@@ -1,0 +1,17 @@
+ingress:
+  enabled: true
+  className: "traefik"
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: auth@file
+  hosts:
+    - host: "echo.api.dev.mindtastic.lol"
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+accessRule:
+  matchPath: "https://echo.api.dev.mindtastic.lol/<.*>"
+  matchMethods: ["GET","PUT","DELETE","POST"]
+  kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
+  kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
