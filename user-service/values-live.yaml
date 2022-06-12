@@ -3,7 +3,29 @@ replicaCount: 1
 image:
   repository: ghcr.io/mindtastic/user-service
   pullPolicy: IfNotPresent
-  tag: "31921bf428d15da5cf51e6bd21030527e1f0c07a"
+  tag: "664f9994f839777d4c71728ec7408a67ee650ebf"
+
+database:
+  name: users
+  username: user-service
+  members: 1
+  agent:
+    resources:
+      limits:
+        cpu: 50m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+  mongod:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+
 
 accessRule:
   matchPath: "https://users.api.live.mindtastic.lol/user/<.+>"
@@ -55,10 +77,10 @@ ingress:
 
 resources:
   limits:
-    cpu: 100m
+    cpu: 50m
     memory: 128Mi
   requests:
-    cpu: 100m
+    cpu: 50m
     memory: 128Mi
 
 autoscaling:

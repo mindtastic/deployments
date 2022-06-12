@@ -228,7 +228,7 @@ ingress:
     #      - chart-example.local
 
 kratos:
-  development: true
+  development: false
   # -- Enable the initialization job. Required to work with a DB
   autoMigrate: true
 
@@ -306,8 +306,8 @@ kratos:
   config:
     identity:
       schemas:
-      - id: user
-        url: file:///etc/config/schema.user.json
+        - id: user
+          url: file:///etc/config/schema.user.json
       default_schema_id: user
     courier:
       smtp:
@@ -332,9 +332,16 @@ kratos:
 
       flows:
         registration:
+          lifespan: 15m
           ui_url: https://auth-example.api.live.mindtastic.lol/registration
+          after:
+            password:
+              hooks:
+                - hook: session
+
         login:
-          ui_url: https://auth-example.api.live.mindtastic.lol/login
+          lifespan: 15m
+          ui_url: https://auth-example.api.dev.mindtastic.lol/login
         error:
           ui_url: https://auth-example.api.live.mindtastic.lol/error
         logout:
@@ -342,7 +349,11 @@ kratos:
             default_browser_return_url: https://auth-example.api.live.mindtastic.lol
 
     dsn: ""
-    secrets: {}
+    # Dummy cookies that have to be set for the session hook to work. These cookies are dummies and do not actually do anything. See https://www.ory.sh/docs/kratos/self-service/hooks
+    secrets:
+      cookie:
+        - A7Ngqk6hdl7WwMglzHLKqahPyfEjDUDD
+        - EFI9fkor8n5VGGAb5MCHpmKTJD6kx7QE
 
 ## -- Configuration options for the k8s deployment
 deployment:
