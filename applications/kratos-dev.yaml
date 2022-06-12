@@ -12,6 +12,7 @@ spec:
     helm:
       releaseName: kratos
       valueFiles:
+      - values-common.yaml
       - values-dev.yaml      
   destination:
     server: "https://cluster.net.dev.mindtastic.lol"

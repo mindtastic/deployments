@@ -12,6 +12,7 @@ spec:
     helm:
       releaseName: traefik
       valueFiles:
+      - values-common.yaml
       - values-live.yaml
   destination:
     server: https://kubernetes.default.svc

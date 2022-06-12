@@ -14,6 +14,7 @@ spec:
     helm:
       releaseName: user-service
       valueFiles:
+      - values-common.yaml
       - values-live.yaml    
   destination:
     server: https://kubernetes.default.svc
