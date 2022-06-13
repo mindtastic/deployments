@@ -7,9 +7,10 @@ config: |-
     [http.middlewares.allowCORS.headers]
       accessControlAllowMethods = ["GET", "OPTIONS", "PUT"]
       accessControlAllowOriginList = ["*"]
-      X-Custom-Request-Header = "Origin"
       accessControlMaxAge = 100
       addVaryHeader = true
+      [http.middlewares.allowCORS.headers.customRequestHeaders]
+        X-Custom-Request-Header = "Origin"
 
 # Default values for Traefik
 image:
