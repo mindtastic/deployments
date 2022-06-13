@@ -4,6 +4,7 @@ ingress:
     className: ""
     annotations:
       kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/router.middlewares: allowCORS@file
       #kubernetes.io/tls-acme: "true"
     hosts:
       - host: auth.api.dev.mindtastic.lol
