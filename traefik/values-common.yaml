@@ -4,6 +4,11 @@ config: |-
     [http.middlewares.auth.forwardAuth]
       address = "http://oathkeeper-api.oathkeeper.svc.cluster.local:4456/decisions"
       authResponseHeaders = "X-User-Id"
+    [http.middlewares.allowCORS.headers]
+      accessControlAllowMethods = ["GET", "OPTIONS", "PUT"]
+      accessControlAllowOriginList = ["*"]
+      accessControlMaxAge = 100
+      addVaryHeader = true
 
 # Default values for Traefik
 image:
