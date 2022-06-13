@@ -11,8 +11,9 @@ podCommand:
 ingress:
   enabled: true
   className: "traefik"
-  annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: allowCORS@file
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   hosts:
     - host: auth.api.live.mindtastic.lol
       paths:
