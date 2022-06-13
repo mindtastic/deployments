@@ -13,6 +13,6 @@ ingress:
 
 accessRule:
   matchPath: "https://echo.api.dev.mindtastic.lol/<.*>"
-  matchMethods: ["GET","PUT","DELETE","POST"]
+  matchMethods: ["GET","PUT","DELETE","POST", "OPTIONS"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
