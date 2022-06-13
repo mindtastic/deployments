@@ -2,7 +2,8 @@ ingress:
   enabled: true
   className: "traefik"
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: auth@file
+    traefik.ingress.kubernetes.io/router.middlewares: auth@file,allowCORS@file
+
   hosts:
     - host: "echo.api.dev.mindtastic.lol"
       paths:
