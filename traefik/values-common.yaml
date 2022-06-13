@@ -5,7 +5,7 @@ config: |-
       address = "http://oathkeeper-api.oathkeeper.svc.cluster.local:4456/decisions"
       authResponseHeaders = "X-User-Id"
     [http.middlewares.allowCORS.headers]
-      accessControlAllowMethods = ["GET", "OPTIONS", "PUT"]
+      accessControlAllowMethods = ["GET", "OPTIONS", "PUT", "POST"]
       accessControlAllowOriginList = ["*"]
       accessControlMaxAge = 100
       addVaryHeader = true
