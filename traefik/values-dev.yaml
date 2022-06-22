@@ -1,1 +1,55 @@
 ---
+
+networkPolicy:
+  enabled: true
+  ingress:
+    enabled: false
+    spec: []
+  egress:
+    enabled: true
+    spec:
+    # Kube API Level Stuff
+      - ports:
+        - port: 443
+          protocol: TCP
+        to:
+        - ipBlock:
+            cidr: 172.16.0.0/28
+      - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+        ports:
+        - protocol: TCP
+          port: 53
+        - protocol: UDP
+          port: 53
+    # Access to Oathkeeper
+      - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: oathkeeper
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: oathkeeper
+        ports:
+        - protocol: TCP
+          port: 4456
+    # Actual Applications
+      - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kagami
+        ports:
+        - protocol: TCP
+          port: 7666
+      # - to:
+      #   - namespaceSelector:
+      #       matchLabels:
+      #         kubernetes.io/metadata.name: user-service
+      #   ports:
+      #   - protocol: TCP
+      #     port: 8000
