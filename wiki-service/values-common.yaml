@@ -18,7 +18,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
+podAnnotations: 
+  linkerd.io/inject: enabled
 
 podEnv:
 - name: MONGODB_USER
