@@ -12,9 +12,9 @@ spec:
       releaseName: linkerd-viz
       parameters:
       - name: "grafana.enabled"
-        value: false 
+        value: "false"
       - name: "prometheus.enabled"
-        value: false 
+        value: "false"
   destination:
     server: "https://cluster.net.dev.mindtastic.lol"
     namespace: linkerd-viz
