@@ -8,6 +8,7 @@ spec:
   source:
     repoURL: https://helm.linkerd.io/stable
     targetRevision: 2.11.2
+    chart: linkerd-viz
     helm:
       releaseName: linkerd-viz
       parameters:
