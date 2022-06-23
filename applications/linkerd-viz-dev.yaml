@@ -11,11 +11,11 @@ spec:
     chart: linkerd-viz
     helm:
       releaseName: linkerd-viz
-      parameters:
-      - name: "grafana.enabled"
-        value: "false"
-      - name: "prometheus.enabled"
-        value: "false"
+      # parameters:
+      # - name: "grafana.enabled"
+      #   value: "false"
+      # - name: "prometheus.enabled"
+      #   value: "false"
   destination:
     server: "https://cluster.net.dev.mindtastic.lol"
     namespace: linkerd-viz
