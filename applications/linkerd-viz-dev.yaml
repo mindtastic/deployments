@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linkerd-viz-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://helm.linkerd.io/stable
+    targetRevision: 2.11.2
+    helm:
+      releaseName: linkerd-viz
+      parameters:
+      - name: "grafana.enabled"
+        value: false 
+      - name: "prometheus.enabled"
+        value: false 
+  destination:
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: linkerd-viz
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
