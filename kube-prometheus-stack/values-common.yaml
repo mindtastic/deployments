@@ -488,8 +488,7 @@ alertmanager:
 
     ## Namespaces to be selected for AlertmanagerConfig discovery. If nil, only check own namespace.
     ##
-    alertmanagerConfigNamespaceSelector:
-      any: true
+    alertmanagerConfigNamespaceSelector: {}
     ## Example which selects all namespaces
     ## with label "alertmanagerconfig" with values any of "example-namespace" or "example-namespace-2"
     # alertmanagerConfigNamespaceSelector:
@@ -2282,14 +2281,13 @@ prometheus:
     ## If nil, select own namespace. Namespaces to be selected for ServiceMonitor discovery.
     ## See https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#namespaceselector for usage
     ##
-    ruleNamespaceSelector:
-      any: true
+    ruleNamespaceSelector: {}
 
     ## If true, a nil or {} value for prometheus.prometheusSpec.ruleSelector will cause the
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the PrometheusRule resources created
     ##
-    ruleSelectorNilUsesHelmValues: true
+    ruleSelectorNilUsesHelmValues: false
 
     ## PrometheusRules to be selected for target discovery.
     ## If {}, select all PrometheusRules
@@ -2314,7 +2312,7 @@ prometheus:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the servicemonitors created
     ##
-    serviceMonitorSelectorNilUsesHelmValues: true
+    serviceMonitorSelectorNilUsesHelmValues: false
 
     ## ServiceMonitors to be selected for target discovery.
     ## If {}, select all ServiceMonitors
@@ -2327,8 +2325,7 @@ prometheus:
 
     ## Namespaces to be selected for ServiceMonitor discovery.
     ##
-    serviceMonitorNamespaceSelector:
-      any: true
+    serviceMonitorNamespaceSelector: {}
     ## Example which selects ServiceMonitors in namespaces with label "prometheus" set to "somelabel"
     # serviceMonitorNamespaceSelector:
     #   matchLabels:
@@ -2338,7 +2335,7 @@ prometheus:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the podmonitors created
     ##
-    podMonitorSelectorNilUsesHelmValues: true
+    podMonitorSelectorNilUsesHelmValues: false
 
     ## PodMonitors to be selected for target discovery.
     ## If {}, select all PodMonitors
@@ -2352,14 +2349,13 @@ prometheus:
     ## Namespaces to be selected for PodMonitor discovery.
     ## See https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#namespaceselector for usage
     ##
-    podMonitorNamespaceSelector:
-      any: true
+    podMonitorNamespaceSelector: {}
 
     ## If true, a nil or {} value for prometheus.prometheusSpec.probeSelector will cause the
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the probes created
     ##
-    probeSelectorNilUsesHelmValues: true
+    probeSelectorNilUsesHelmValues: false
 
     ## Probes to be selected for target discovery.
     ## If {}, select all Probes
@@ -2373,8 +2369,7 @@ prometheus:
     ## Namespaces to be selected for Probe discovery.
     ## See https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#namespaceselector for usage
     ##
-    probeNamespaceSelector:
-      any: true
+    probeNamespaceSelector: {}
 
     ## How long to retain metrics
     ##
@@ -3019,14 +3014,13 @@ thanosRuler:
     ## If nil, select own namespace. Namespaces to be selected for ServiceMonitor discovery.
     ## See https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#namespaceselector for usage
     ##
-    ruleNamespaceSelector:
-      any: true
+    ruleNamespaceSelector: {}
 
     ## If true, a nil or {} value for thanosRuler.thanosRulerSpec.ruleSelector will cause the
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the PrometheusRule resources created
     ##
-    ruleSelectorNilUsesHelmValues: true
+    ruleSelectorNilUsesHelmValues: false
 
     ## PrometheusRules to be selected for target discovery.
     ## If {}, select all PrometheusRules
