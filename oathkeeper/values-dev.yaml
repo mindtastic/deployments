@@ -2,3 +2,7 @@ oathkeeper:
   config:
     log:
       level: info
+
+service:
+  metrics:
+    enabled: true
