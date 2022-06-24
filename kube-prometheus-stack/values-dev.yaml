@@ -123,7 +123,7 @@ alertmanager:
     #         storage: 50Gi
     #     selector: {}
 
-    externalUrl: "alertmanager-dev.mindtastic.lol"
+    externalUrl: "https://alertmanager-dev.mindtastic.lol"
     routePrefix: /
 
   ## ExtraSecret can be used to store various data in an extra secret
