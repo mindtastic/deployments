@@ -684,7 +684,7 @@ prometheus:
     externalUrl: ""
 
     retention: 10d
-    retentionSize: "8Gi"
+    retentionSize: "8GB"
 
     walCompression: false
 
