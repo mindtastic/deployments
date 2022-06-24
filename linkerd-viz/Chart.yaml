@@ -1,0 +1,15 @@
+apiVersion: v2
+name: linkerd-viz
+
+# This chart is a thin wrapper around the `linkerd-viz` chart to fix the following issue:
+# https://github.com/linkerd/linkerd2/issues/7233
+
+type: application
+version: "0.1.0"
+appVersion: "2.11.2"
+sources:
+  - https://github.com/linkerd/linkerd2
+dependencies:
+  - name: linkerd-viz
+    version: "2.11.2"
+    repository: https://helm.linkerd.io/stable

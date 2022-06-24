@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linkerd-viz-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: linkerd-viz
+    helm:
+      releaseName: linkerd-viz
+      valueFiles:
+      - values.yaml
+  destination:
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: linkerd-viz
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true

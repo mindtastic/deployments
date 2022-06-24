@@ -1,0 +1,14 @@
+# https://github.com/linkerd/linkerd2/issues/7233
+apiVersion: policy.linkerd.io/v1beta1
+kind: ServerAuthorization
+metadata:
+  name: allow-internal-admin
+  namespace: linkerd-viz
+spec:
+  client:
+    unauthenticated: true
+    networks:
+    - cidr: 0.0.0.0/0
+  server:
+    selector:
+      matchLabels: {}
