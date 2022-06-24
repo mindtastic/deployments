@@ -1,0 +1,5 @@
+linkerd-viz: {}
+  # grafana:
+  #   enabled: false
+  # prometheus:
+  #   enabled: false

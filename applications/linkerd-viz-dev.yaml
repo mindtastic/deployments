@@ -6,16 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://helm.linkerd.io/stable
-    targetRevision: 2.11.2
-    chart: linkerd-viz
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: linkerd-viz
     helm:
       releaseName: linkerd-viz
-      # parameters:
-      # - name: "grafana.enabled"
-      #   value: "false"
-      # - name: "prometheus.enabled"
-      #   value: "false"
+      valueFiles:
+      - values.yaml
   destination:
     server: "https://cluster.net.dev.mindtastic.lol"
     namespace: linkerd-viz
