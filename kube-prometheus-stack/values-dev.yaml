@@ -172,7 +172,7 @@ grafana:
     access: proxy
     orgId: 1
     type: jaeger
-    url: "http://jaeger.linkerd-viz.cluster.local:16686/jaeger"
+    url: "http://jaeger.linkerd-viz:16686/jaeger"
     version: 1
 
 ## Component scraping the kube api server
