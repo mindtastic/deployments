@@ -4,7 +4,8 @@ linkerd-viz:
   prometheus:
     enabled: false
   prometheusUrl: http://kube-prometheus-stack-prometheus.monitoring:9090
-  jaegerUrl : jaeger.linkerd-viz
+  jaegerUrl : https://jaeger-dev.mindtastic.lol
+  grafaUrl: https://grafana-dev.mindtastic.lol
 
 linkerd-jaeger:
   installNamespace: false
