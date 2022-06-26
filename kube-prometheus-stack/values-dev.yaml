@@ -141,6 +141,10 @@ grafana:
   enabled: true
   namespaceOverride: ""
 
+  grafana.ini:
+    server:
+      root_url: https://grafana-dev.mindtastic.lol
+
   persistence:
     enabled: true
     type: pvc
