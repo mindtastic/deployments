@@ -7,3 +7,4 @@ linkerd-viz: {}
 linkerd-jaeger:
   installNamespace: false
   namespace: linkerd-viz
+  collectorSvcAddr: collector.linkerd-viz:55678
