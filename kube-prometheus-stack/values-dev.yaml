@@ -143,7 +143,7 @@ grafana:
 
   grafana.ini:
     server:
-      root_url: https://grafana-dev.mindtastic.lol
+      root_url: https://grafana-dev.teleport.mindtastic.lol
 
   persistence:
     enabled: true
