@@ -42,7 +42,7 @@ spec:
 
 # Bootstraping
 
-A major chart version change indicates that there is an incompatible breaking change needing manual actions.
+This repository is (mostly) fully automated. It follows ArgoCD's "[App-of-Apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/)" pattern, albeit with small differences.
 
 `./applications.yaml` deploys an ArgoCD application which creates all other applications stored in `./applications`.
 
