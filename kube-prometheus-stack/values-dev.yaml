@@ -168,10 +168,10 @@ grafana:
   ## Configure additional grafana datasources (passed through tpl)
   ## ref: http://docs.grafana.org/administration/provisioning/#datasources
   additionalDataSources:
-  - name: Tempo
+  - name: Jaeger
     access: proxy
     orgId: 1
-    type: tempo
+    type: jaeger
     url: "http://jaeger.linkerd-viz.cluster.local:16686/jaeger"
     version: 1
 
