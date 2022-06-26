@@ -3,6 +3,7 @@ linkerd-viz:
     enabled: false
   prometheus:
     enabled: false
+  prometheusUrl: http://prometheus.monitoring:9090
 
 linkerd-jaeger:
   installNamespace: false
