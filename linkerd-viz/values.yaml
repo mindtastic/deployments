@@ -1,8 +1,8 @@
-linkerd-viz: {}
-  # grafana:
-  #   enabled: false
-  # prometheus:
-  #   enabled: false
+linkerd-viz:
+  grafana:
+    enabled: false
+  prometheus:
+    enabled: false
 
 linkerd-jaeger:
   installNamespace: false
