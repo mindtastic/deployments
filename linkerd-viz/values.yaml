@@ -3,4 +3,6 @@ linkerd-viz: {}
   #   enabled: false
   # prometheus:
   #   enabled: false
-  
+
+linkerd-jaeger:
+  installNamespace: false
