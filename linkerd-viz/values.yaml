@@ -6,3 +6,4 @@ linkerd-viz: {}
 
 linkerd-jaeger:
   installNamespace: false
+  namespace: linkerd-viz
