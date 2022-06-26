@@ -141,6 +141,13 @@ grafana:
   enabled: true
   namespaceOverride: ""
 
+  persistence:
+    enabled: true
+    type: pvc
+    accessModes:
+    - ReadWriteOnce
+    size: 4Gi
+
   serviceMonitor:
     enabled: true
     path: "/metrics"
@@ -157,6 +164,16 @@ grafana:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
+
+  ## Configure additional grafana datasources (passed through tpl)
+  ## ref: http://docs.grafana.org/administration/provisioning/#datasources
+  additionalDataSources:
+  - name: Tempo
+    access: proxy
+    orgId: 1
+    type: tempo
+    url: "http://jaeger.linkerd-viz.cluster.local:16686/jaeger"
+    version: 1
 
 ## Component scraping the kube api server
 ##

@@ -1,1 +1,8 @@
 ---
+
+additionalArguments: [
+  "--certificatesresolvers.default.acme.email=jograeger@icloud.com",
+  "--certificatesresolvers.default.acme.storage=/data/acme.json",
+  "--certificatesresolvers.default.acme.tlschallenge=true",
+  "--providers.file.filename=/config/config.toml",
+]

@@ -21,6 +21,14 @@ ingress:
 
 kratos:
   development: true
+
+  tracing:
+    service_name: kratos
+    provider: zipkin
+    providers:
+      zipkin:
+        server_url: http://collector.linkerd-viz.svc.cluster.local:9411/api/v2/spans
+
   config:
     serve:
       public:
