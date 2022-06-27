@@ -25,4 +25,6 @@ hack/
 ci/
 kube-prometheus-*.tgz
 
+templates/grafana/dashboards-1.14/*.json
+
 unittests/
