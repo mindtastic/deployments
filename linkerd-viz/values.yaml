@@ -2,8 +2,8 @@ linkerd-viz:
   grafana:
     enabled: false
   prometheus:
-    enabled: false
-  prometheusUrl: http://kube-prometheus-stack-prometheus.monitoring:9090
+    enabled: true
+    alertmanagers: "kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093"
   jaegerUrl : https://jaeger-dev.teleport.mindtastic.lol
   grafaUrl: https://grafana-dev.teleport.mindtastic.lol
 
