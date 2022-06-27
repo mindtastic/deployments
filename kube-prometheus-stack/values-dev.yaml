@@ -176,8 +176,9 @@ grafana:
     access: proxy
     orgId: 1
     type: jaeger
-    nodeGraph:
-        enabled: true
+    jsonData:
+      nodeGraph:
+          enabled: true
     url: "http://jaeger.linkerd-viz:16686/jaeger"
     version: 1
 
