@@ -5,6 +5,7 @@ linkerd-viz:
     enabled: true
   jaegerUrl : https://jaeger-dev.teleport.mindtastic.lol
   grafaUrl: https://grafana-dev.teleport.mindtastic.lol
+  enforcedHostRegexp: ".*"
 
 linkerd-jaeger:
   installNamespace: false
