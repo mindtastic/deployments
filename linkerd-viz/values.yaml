@@ -3,7 +3,7 @@ linkerd-viz:
     enabled: false
   prometheus:
     enabled: true
-  jaegerUrl : https://jaeger-dev.teleport.mindtastic.lol
+  jaegerUrl : "http://jaeger.linkerd-viz:16686/jaeger"
   grafaUrl: https://grafana-dev.teleport.mindtastic.lol
   dashboard:
     enforcedHostRegexp: ".*"
