@@ -1,5 +1,5 @@
 image:
   repository: ghcr.io/mindtastic/wiki-service
   pullPolicy: IfNotPresent
-  tag: "460c7f972e3da1358f90a021966c4012cf18e0b0"
+  tag: "a1b04fdf126bbaa7a8fbc49af56319a599c7bd3c"
 
