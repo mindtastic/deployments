@@ -1,7 +1,7 @@
 replicaCount: 1
 
 database:
-  name: mindtasticWiki
+  name: wiki
   username: wiki-service
   members: 1
   agent:
