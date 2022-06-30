@@ -35,7 +35,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.podEnv }}
           env:
-            {{- toYaml . | nindent 12}}
+            - name: "CONNECTION_STRING"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-%s-%s" .Chart.Name .Values.database.name .Values.database.username }} 
+                  key: connectionString.standard
           {{- end}}
           ports:
             - name: http
@@ -43,11 +47,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
