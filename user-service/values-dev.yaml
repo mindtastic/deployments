@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/mindtastic/user-service
   pullPolicy: IfNotPresent
-  tag: "dev-54d9aee32c7a18ce31514e96a1a14a2f83fdbc0b"
+  tag: "dev-06dc44eac7cda66bfb832d9c2e6e5641c49ca877"
 
 accessRule:
   matchPath: "https://users.api.dev.mindtastic.lol/user/<.+>"
