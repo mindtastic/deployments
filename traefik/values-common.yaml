@@ -13,6 +13,11 @@ config: |-
         origin = ""
     [http.middlewares.allowInternalIPs.ipWhiteList]
       sourceRange = ["10.10.0.0/28","10.11.0.0/16", "10.12.0.0/16"]
+  [tracing]	
+    [tracing.jaeger]	
+      propagation = "b3"	
+      [tracing.jaeger.collector]	
+        endpoint = "collector.linkerd-viz:55678"
 
 # Default values for Traefik
 image:
