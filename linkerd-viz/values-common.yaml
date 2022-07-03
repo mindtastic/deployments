@@ -53,5 +53,5 @@ linkerd-jaeger:
         pipelines:
           traces:
             receivers: [otlp,opencensus,zipkin,jaeger]
-            processors: [batch]
+            processors: [batch,transparency]
             exporters: [jaeger,otlp/honeycomb]
