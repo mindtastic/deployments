@@ -38,8 +38,8 @@ linkerd-jaeger:
             match_type: strict
             services: [linkerd-proxy]
           serviceMap:
-            "echo.dev.api.mindtastic.lol": "kagami.kagami.svc.cluster.local:7666"
-            "users.dev.api.mindtastic.lol": "user-service.user-service.svc.cluster.local:8000"
+            "echo.api.dev.mindtastic.lol": "kagami.kagami.svc.cluster.local:7666"
+            "users.api.dev.mindtastic.lol": "user-service.user-service.svc.cluster.local:8000"
       extensions:
         health_check:
       exporters:
