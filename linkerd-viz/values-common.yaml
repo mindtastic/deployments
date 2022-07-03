@@ -1,0 +1,57 @@
+linkerd-viz:
+  grafana:
+    enabled: false
+  prometheus:
+    enabled: true
+  jaegerUrl : "http://jaeger.linkerd-viz.svc.cluster.local:16686/jaeger"
+  grafaUrl: https://grafana-dev.teleport.mindtastic.lol
+  dashboard:
+    enforcedHostRegexp: ".*"
+
+linkerd-jaeger:
+  installNamespace: false
+  namespace: linkerd-viz
+  webhook:
+    collectorSvcAddr: collector.linkerd-viz:55678
+  collector:
+    image:
+      name: "ghcr.io/mindtastic/opentelemetry-transparency-processor"
+      version: "1d56f6b00a859bb36864dcef6d2bba337cf330b9"
+    config: |
+      receivers:
+        otlp:
+          protocols:
+            grpc:
+            http:
+        opencensus:
+        zipkin:
+        jaeger:
+          protocols:
+            grpc:
+            thrift_http:
+            thrift_compact:
+            thrift_binary:
+      processors:
+        batch:
+        transparency:
+          include:
+            match_type: strict
+            services: [linkerd-proxy]
+      extensions:
+        health_check:
+      exporters:
+        jaeger:
+          endpoint: jaeger.${POD_NAMESPACE}:14250
+          tls:
+            insecure: true
+        otlp/honeycomb:
+          endpoint: api.honeycomb.io:443
+          headers:
+            x-honeycomb-team: ${HONEYCOMB_TEAM_KEY}
+      service:
+        extensions: [health_check]
+        pipelines:
+          traces:
+            receivers: [otlp,opencensus,zipkin,jaeger]
+            processors: [batch]
+            exporters: [jaeger]
