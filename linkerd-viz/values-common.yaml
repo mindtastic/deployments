@@ -16,7 +16,7 @@ linkerd-jaeger:
   collector:
     image:
       name: "ghcr.io/mindtastic/opentelemetry-transparency-processor"
-      version: "dev-bf5076236aa7bb919e3964c817f5431c248c4a8d"
+      version: "dev-07021c6c421f7558cbea337607b4dc3f9b28f360"
     config: |
       receivers:
         otlp:
@@ -37,6 +37,9 @@ linkerd-jaeger:
           include:
             match_type: strict
             services: [linkerd-proxy]
+          serviceMap:
+            "echo.dev.api.mindtastic.lol": "kagami.kagami.svc.cluster.local:7666"
+            "users.dev.api.mindtastic.lol": "user-service.user-service.svc.cluster.local:8000"
       extensions:
         health_check:
       exporters:
