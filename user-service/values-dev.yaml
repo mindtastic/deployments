@@ -4,7 +4,7 @@ image:
   tag: "dev-12851e9826dd85262e82c91352e4c85157e84957"
 
 accessRule:
-  matchPath: "https://users.api.dev.mindtastic.lol/user/<.+>"
+  matchPath: "https://users.api.dev.mindtastic.lol/user"
   matchMethods: ["GET","PUT","DELETE","POST"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
