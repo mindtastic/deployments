@@ -16,7 +16,7 @@ linkerd-jaeger:
   collector:
     image:
       name: "ghcr.io/mindtastic/opentelemetry-transparency-processor"
-      version: "16566f92104624997200f26f9e9b763242bd9643"
+      version: "dev-01e960bed26d14f4dfb915e1c38ad8d5e2c46846"
     config: |
       receivers:
         otlp:
@@ -53,5 +53,5 @@ linkerd-jaeger:
         pipelines:
           traces:
             receivers: [otlp,opencensus,zipkin,jaeger]
-            processors: [batch,transparency]
+            processors: [transparency,batch]
             exporters: [jaeger,otlp/honeycomb]
