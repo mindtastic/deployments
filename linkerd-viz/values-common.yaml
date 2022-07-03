@@ -16,7 +16,7 @@ linkerd-jaeger:
   collector:
     image:
       name: "ghcr.io/mindtastic/opentelemetry-transparency-processor"
-      version: "8b467741146ae235d68e5e50b8957a474cf8d4b2"
+      version: "4a3354b82e87e1be5737890f41eb7bfcfb9feb9f"
     config: |
       receivers:
         otlp:
