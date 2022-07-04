@@ -1,4 +1,15 @@
 oathkeeper:
   config:
+    tracing:
+      service_name: oathkeeper
+      provider: zipkin
+      providers:
+        zipkin:
+          server_url: http://collector.linkerd-viz.svc.cluster.local:9411/api/v2/spans
+          
     log:
       level: info
+
+service:
+  metrics:
+    enabled: true

@@ -2,5 +2,8 @@ dependencies:
 - name: linkerd-viz
   repository: https://helm.linkerd.io/stable
   version: 2.11.2
-digest: sha256:22fe181a9b0c34477cb308bb3a1405b6479475f32a35df010007ab1d6d9cbcc4
-generated: "2022-06-24T18:38:44.932826+02:00"
+- name: linkerd-jaeger
+  repository: https://helm.linkerd.io/stable
+  version: 2.11.2
+digest: sha256:eed3dfd35c92dd01145b5439dd650d8a9c27db6ced5bf72f18bdbdecf33e2a4b
+generated: "2022-06-26T18:01:32.04983+02:00"

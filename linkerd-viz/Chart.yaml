@@ -13,3 +13,6 @@ dependencies:
   - name: linkerd-viz
     version: "2.11.2"
     repository: https://helm.linkerd.io/stable
+  - name: linkerd-jaeger
+    version: "2.11.2"
+    repository: https://helm.linkerd.io/stable

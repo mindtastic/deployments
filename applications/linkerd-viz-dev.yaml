@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: linkerd-viz
       valueFiles:
-      - values.yaml
+      - values-common.yaml
   destination:
     server: "https://cluster.net.dev.mindtastic.lol"
     namespace: linkerd-viz

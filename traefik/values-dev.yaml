@@ -1,1 +1,11 @@
 ---
+
+additionalArguments: [
+  "--certificatesresolvers.default.acme.email=jograeger@icloud.com",
+  "--certificatesresolvers.default.acme.storage=/data/acme.json",
+  "--certificatesresolvers.default.acme.tlschallenge=true",
+  "--providers.file.filename=/config/config.toml",
+  "--tracing.jaeger=true",
+  "--tracing.jaeger.propagation=b3",
+  "--tracing.jaeger.collector.endpoint=http://collector.linkerd-viz:14268/api/traces?format=jaeger.thrift",
+]
