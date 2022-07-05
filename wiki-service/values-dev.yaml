@@ -5,7 +5,7 @@ image:
 
 accessRule:
   matchPath: "https://wiki.api.dev.mindtastic.lol/wiki"
-  matchMethods: ["GET","PUT","DELETE","POST"]
+  matchMethods: ["GET"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
 
