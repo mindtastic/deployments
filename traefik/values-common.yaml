@@ -40,7 +40,10 @@ deployment:
   # The minimum number of seconds Traefik needs to be up and running before the DaemonSet/Deployment controller considers it available
   minReadySeconds: 0
   # Additional deployment annotations (e.g. for jaeger-operator sidecar injection)
-  annotations: {}
+  annotations:
+    - prometheus.io/scrape: 'true'
+    - prometheus.io/path: '/metrics'
+    - prometheus.io/port: '9100'
   # Additional deployment labels (e.g. for filtering deployment by custom labels)
   labels: {}
   # Additional pod annotations (e.g. for mesh injection or prometheus scraping)
@@ -379,7 +382,7 @@ ports:
     # You may not want to expose the metrics port on production deployments.
     # If you want to access it from outside of your cluster,
     # use `kubectl port-forward` or create a secure ingress
-    expose: false
+    expose: true
     # The exposed port for this service
     exposedPort: 9100
     # The port protocol (TCP/UDP)
