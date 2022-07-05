@@ -4,6 +4,7 @@ image:
   tag: "a1b04fdf126bbaa7a8fbc49af56319a599c7bd3c"
 
 accessRule:
+  unauthenticated: true
   matchPath: "https://wiki.api.dev.mindtastic.lol/wiki"
   matchMethods: ["GET"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami

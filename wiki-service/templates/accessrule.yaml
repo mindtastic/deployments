@@ -10,6 +10,9 @@ spec:
       {{- end }}
     url: {{ .Values.accessRule.matchPath }}
   authenticators:
+    {{- if (.Values.accessRule.unauthenticated | default false) }}
+    - handler: noop
+    {{- else }}
     - handler: bearer_token
       config:
         check_session_url: {{ .Values.accessRule.kratosCheckSessionURL }}
@@ -20,6 +23,7 @@ spec:
         subject_from: "identity.traits.accountKey"
         token_from:
           header: "Authorization"
+    {{- end }}
   authorizer:
     handler: allow
   mutators:
