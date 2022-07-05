@@ -27,15 +27,19 @@ spec:
   authorizer:
     handler: allow
   mutators:
-  - handler: hydrator
-    config:
-      api:
-        url: {{ .Values.accessRule.kodaHydratorURL }}
-        retry:
-          give_up_after: 2s
-          max_delay: 100ms
-      cache:
-        ttl: 60s
+    {{- if (.Values.accessRule.unauthenticated | default false) }}
+    - handler: noop
+    {{- else }}
+    - handler: hydrator
+      config:
+        api:
+          url: {{ .Values.accessRule.kodaHydratorURL }}
+          retry:
+            give_up_after: 2s
+            max_delay: 100ms
+        cache:
+          ttl: 60s
+    {{- end }}
   - handler: header
     config:
       headers:
