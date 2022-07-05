@@ -1,9 +1,30 @@
 replicaCount: 1
 
+database:
+  name: wiki
+  username: wiki-service
+  members: 1
+  agent:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+  mongod:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+
 image:
   repository: ghcr.io/mindtastic/wiki-service
   pullPolicy: IfNotPresent
-  tag: "4f08ed2f67ce7f76424565c89c9bd6eb0fef202d"
+  tag: "a1b04fdf126bbaa7a8fbc49af56319a599c7bd3c"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -21,14 +42,6 @@ serviceAccount:
 podAnnotations: 
   linkerd.io/inject: enabled
 
-podEnv:
-- name: MONGODB_USER
-  value: ""
-- name: MONGODB_PASSWORD
-  value: ""
-- name: MONGODB_HOST
-  value: "mongodb.mongodb.svc.cluster.local"
-
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -45,11 +58,9 @@ service:
   port: 5001
 
 ingress:
-  enabled: false
-  className: ""
+  enabled: true
+  className: "traefik"
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
   hosts:
     - host: wiki.api.dev.mindtastic.lol
       paths:
