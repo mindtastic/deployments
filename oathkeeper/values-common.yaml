@@ -160,6 +160,8 @@ oathkeeper:
       level: info
     
     authenticators:
+      noop:
+        enabled: true
       unauthorized:
         enabled: true
       bearer_token:
