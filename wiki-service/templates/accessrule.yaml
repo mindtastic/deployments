@@ -40,8 +40,8 @@ spec:
         cache:
           ttl: 60s
     {{- end }}
-  - handler: header
-    config:
-      headers:
-        X-User: '{{`{{ print .Subject }}`}}'
-        X-User-Id: '{{`{{ print .Extra.userID }}`}}'
+    - handler: header
+      config:
+        headers:
+          X-User: '{{`{{ print .Subject }}`}}'
+          X-User-Id: '{{`{{ print .Extra.userID }}`}}'
