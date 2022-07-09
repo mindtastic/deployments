@@ -6,7 +6,7 @@ image:
 accessRule:
   unauthenticated: true
   matchPath: "https://mood.api.live.mindtastic.lol/diary"
-  matchMethods: ["GET"]
+  matchMethods: ["POST", "GET", "PUT", "DELETE"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
 
