@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: penguin-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mindtastic/deployments
+    targetRevision: HEAD
+    path: penguin
+    helm:
+      releaseName: penguin
+      valueFiles:
+      - values-common.yaml
+      - values-dev.yaml      
+  destination:
+    server: "https://cluster.net.dev.mindtastic.lol"
+    namespace: penguin
+  syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
