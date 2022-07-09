@@ -1,11 +1,11 @@
 image:
   repository: ghcr.io/mindtastic/mood-diary
   pullPolicy: IfNotPresent
-  tag: "c80b0362efdd3b45e4f87c28bee285ecdceeb391"
+  tag: "c09ffbfe16f976833a3aa237d52930738991ff87"
 
 accessRule:
   unauthenticated: true
-  matchPath: "https://mood-diary.api.dev.mindtastic.lol/diary"
+  matchPath: "https://mood.api.dev.mindtastic.lol/diary"
   matchMethods: ["POST", "GET", "PUT", "DELETE"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
@@ -16,7 +16,7 @@ ingress:
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: auth@file
   hosts:
-    - host: "mood-diary.api.dev.mindtastic.lol"
+    - host: "mood.api.dev.mindtastic.lol"
       paths:
         - path: /
           pathType: Prefix
