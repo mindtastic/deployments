@@ -46,11 +46,26 @@ spec:
               path: /health
               port: http
           env:
-            - name: "CONNECTION_STRING"
+            - name: "DBNAME"
               valueFrom:
                 secretKeyRef:
                   name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
-                  key: uri
+                  key: dbname
+            - name: "HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: host
+            - name: "PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: password
+            - name: "USER"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: user
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
