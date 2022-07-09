@@ -5,7 +5,7 @@ image:
 
 accessRule:
   unauthenticated: true
-  matchPath: "https://mood-diary.api.live.mindtastic.lol/diary"
+  matchPath: "https://mood.api.live.mindtastic.lol/diary"
   matchMethods: ["GET"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
@@ -16,7 +16,7 @@ ingress:
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: auth@file
   hosts:
-    - host: "mood-diary.api.live.mindtastic.lol"
+    - host: "mood.api.live.mindtastic.lol"
       paths:
         - path: /
           pathType: Prefix
