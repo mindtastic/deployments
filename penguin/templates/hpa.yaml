@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "kagami.fullname" . }}
+  name: {{ include "penguin.fullname" . }}
   labels:
-    {{- include "kagami.labels" . | nindent 4 }}
+    {{- include "penguin.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "kagami.fullname" . }}
+    name: {{ include "penguin.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

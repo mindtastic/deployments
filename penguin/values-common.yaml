@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/mindtastic/kagami
+  repository: ghcr.io/mindtastic/penguin
   pullPolicy: IfNotPresent
   tag: "0de1c8fc093f16789cc86e842ecc8353fb155e15"
 

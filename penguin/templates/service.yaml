@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "kagami.fullname" . }}
+  name: {{ include "penguin.fullname" . }}
   labels:
-    {{- include "kagami.labels" . | nindent 4 }}
+    {{- include "penguin.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "kagami.selectorLabels" . | nindent 4 }}
+    {{- include "penguin.selectorLabels" . | nindent 4 }}
