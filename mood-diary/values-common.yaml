@@ -2,6 +2,12 @@ replicaCount: 1
 
 postgres:
   postgresVersion: 14
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        pg_hba:
+          - "host all all 0.0.0.0/0 trust" # this line enabled logical replication with programmatic access
+          - "host all postgres 127.0.0.1/32 md5"
 
 image:
   repository: ghcr.io/mindtastic/mood-diary
