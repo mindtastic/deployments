@@ -49,8 +49,8 @@ spec:
             - name: "CONNECTION_STRING"
               valueFrom:
                 secretKeyRef:
-                  name: {{ printf "%s-%s-%s" .Chart.Name .Values.database.name .Values.database.username }} 
-                  key: connectionString.standard
+                  name: {{ printf "%s-%s-%s" .Release.Name pguser .Release.Name }} 
+                  key: uri
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

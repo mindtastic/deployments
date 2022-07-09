@@ -2,6 +2,7 @@ replicaCount: 1
 
 postgres:
   postgresVersion: 14
+  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.2-1
 
 image:
   repository: ghcr.io/mindtastic/mood-diary
