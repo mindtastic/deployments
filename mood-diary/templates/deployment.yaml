@@ -71,6 +71,11 @@ spec:
                 secretKeyRef:
                   name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
                   key: port
+            - name: "CONNECTION_STRING"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: uri
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
