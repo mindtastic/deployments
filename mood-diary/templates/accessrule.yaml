@@ -1,7 +1,7 @@
 apiVersion: oathkeeper.ory.sh/v1alpha1
 kind: Rule
 metadata:
-  name: {{ include "mood-diary-service.fullname" . }}
+  name: {{ include "mood-diary.fullname" . }}
 spec:
   match:
     methods: 

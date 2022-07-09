@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: { { include "mood-diary-service.fullname" . } }
-  labels: { { - include "mood-diary-service.labels" . | nindent 4 } }
+  name: { { include "mood-diary.fullname" . } }
+  labels: { { - include "mood-diary.labels" . | nindent 4 } }
 spec:
   type: { { .Values.service.type } }
   ports:
@@ -10,4 +10,4 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
-  selector: { { - include "mood-diary-service.selectorLabels" . | nindent 4 } }
+  selector: { { - include "mood-diary.selectorLabels" . | nindent 4 } }
