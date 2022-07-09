@@ -1,11 +1,11 @@
 image:
-  repository: ghcr.io/mindtastic/mood-diary
+  repository: ghcr.io/mindtastic/motivator-service
   pullPolicy: IfNotPresent
   tag: "a3eac2b71c20ac9f68b74a7e26c2c679be44ec88"
 
 accessRule:
   unauthenticated: true
-  matchPath: "https://motivator.api.dev.mindtastic.lol/diary"
+  matchPath: "https://motivator.api.dev.mindtastic.lol/<.+>"
   matchMethods: ["POST", "GET", "PUT", "DELETE"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/

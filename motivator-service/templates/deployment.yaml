@@ -39,12 +39,43 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
+          env:  
+            - name: "DBNAME"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: dbname
+            - name: "HOST"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: host
+            - name: "PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: password
+            - name: "USER"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: user
+            - name: "PORT"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: port
+            - name: "CONNECTION_STRING"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
+                  key: uri
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

@@ -1,5 +1,5 @@
 image:
-  repository: ghcr.io/mindtastic/mood-diary
+  repository: ghcr.io/mindtastic/motivator-service
   pullPolicy: IfNotPresent
   tag: "a3eac2b71c20ac9f68b74a7e26c2c679be44ec88"
 
