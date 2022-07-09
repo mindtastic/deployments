@@ -2,12 +2,17 @@ replicaCount: 1
 
 postgres:
   postgresVersion: 14
-  image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.2-1
 
 image:
   repository: ghcr.io/mindtastic/mood-diary
   pullPolicy: IfNotPresent
   tag: "c80b0362efdd3b45e4f87c28bee285ecdceeb391"
+
+accessRule:
+  matchPath: "https://mood.api.dev.mindtastic.lol/diary"
+  matchMethods: ["GET","PUT","DELETE","POST"]
+  kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
+  kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
 
 imagePullSecrets: []
 nameOverride: ""
@@ -47,7 +52,7 @@ ingress:
   className: "traefik"
   annotations: {}
   hosts:
-    - host: mood-diary.api.dev.mindtastic.lol
+    - host: "mood.api.dev.mindtastic.lol"
       paths:
         - path: /
           pathType: Prefix
