@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/mindtastic/mood-diary
   pullPolicy: IfNotPresent
-  tag: "cb092042798468b996ef824694b5ee9b921d04a3"
+  tag: "9cead9ad1b6c95bae5aadce2290f037a475dfc3d"
 
 accessRule:
   unauthenticated: true
