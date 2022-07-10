@@ -41,10 +41,12 @@ spec:
             httpGet:
               path: /health
               port: http
+            initialDelaySeconds: 20
           readinessProbe:
             httpGet:
               path: /health
               port: http
+            initialDelaySeconds: 20
           env:  
             - name: "DBNAME"
               valueFrom:
