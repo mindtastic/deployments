@@ -1,0 +1,22 @@
+image:
+  repository: ghcr.io/mindtastic/motivator-service
+  pullPolicy: IfNotPresent
+  tag: "1c993c749a25d51384e2089f5ffa8c1395b2b264"
+
+accessRule:
+  matchPath: "https://motivator.api.dev.mindtastic.lol/<.+>"
+  matchMethods: ["POST", "GET", "PUT", "DELETE"]
+  kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
+  kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
+
+ingress:
+  enabled: true
+  className: "traefik"
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: auth@file
+  hosts:
+    - host: "motivator.api.dev.mindtastic.lol"
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
