@@ -35,16 +35,16 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 5001
+              containerPort: 80
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: http
+            initialDelaySeconds: 20
           readinessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: http
+            initialDelaySeconds: 20
           env:
             - name: "DBNAME"
               valueFrom:
@@ -66,11 +66,6 @@ spec:
                 secretKeyRef:
                   name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
                   key: user
-            - name: "PORT"
-              valueFrom:
-                secretKeyRef:
-                  name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
-                  key: port
             - name: "CONNECTION_STRING"
               valueFrom:
                 secretKeyRef:
