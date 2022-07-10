@@ -12,7 +12,7 @@ postgres:
 image:
   repository: ghcr.io/mindtastic/motivator-service
   pullPolicy: IfNotPresent
-  tag: "c9bef473f2cec3fd7e5cf26968521771e529f6e6"
+  tag: "5f9d1ca2f3fa6839b258b23c5a94d39b8e3972e5"
 
 accessRule:
   matchPath: "https://motivator.api.dev.mindtastic.lol/<.+>"
