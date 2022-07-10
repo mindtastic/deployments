@@ -71,8 +71,6 @@ spec:
                 secretKeyRef:
                   name: {{ printf "%s-pguser-%s" .Release.Name .Release.Name }} 
                   key: uri
-            - name: NODE_DEBUG
-              value: '*'
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
