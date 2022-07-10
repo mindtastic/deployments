@@ -4,7 +4,6 @@ image:
   tag: "c86344834ae5d448f6cacce622afccf2bc2eeb24"
 
 accessRule:
-  unauthenticated: true
   matchPath: "https://motivator.api.dev.mindtastic.lol/<.+>"
   matchMethods: ["POST", "GET", "PUT", "DELETE"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami

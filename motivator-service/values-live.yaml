@@ -4,9 +4,8 @@ image:
   tag: "a3eac2b71c20ac9f68b74a7e26c2c679be44ec88"
 
 accessRule:
-  unauthenticated: true
   matchPath: "https://motivator.api.live.mindtastic.lol/<.+>"
-  matchMethods: ["GET","PUT","DELETE","POST"]
+  matchMethods: ["GET", "PUT", "DELETE", "POST"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
   kodaHydratorURL: http://koda.koda.svc.cluster.local:4133/
 
