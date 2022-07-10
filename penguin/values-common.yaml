@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/mindtastic/penguin
   pullPolicy: IfNotPresent
-  tag: "834ab6cec4e11e321e70cbe17bdeafc810363678"
+  tag: "f850ecf4532fa37f199c12427493bcb2e7af14f6"
 
 imagePullSecrets: []
 nameOverride: ""
