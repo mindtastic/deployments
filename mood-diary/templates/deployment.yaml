@@ -38,11 +38,13 @@ spec:
               containerPort: 80
               protocol: TCP
           livenessProbe:
-            tcpSocket:
+            httpGet:
+              path: /health
               port: http
             initialDelaySeconds: 20
           readinessProbe:
-            tcpSocket:
+            httpGet:
+              path: /health
               port: http
             initialDelaySeconds: 20
           env:
