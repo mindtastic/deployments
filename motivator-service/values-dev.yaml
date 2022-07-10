@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/mindtastic/motivator-service
   pullPolicy: IfNotPresent
-  tag: "1f7f4b7a8d6f3c7e92df4688bb9dfc33663b60d0"
+  tag: "38305d7077f6760b52cee479153fdcd0f0a5a351"
 
 accessRule:
   matchPath: "https://motivator.api.dev.mindtastic.lol/<.+>"
