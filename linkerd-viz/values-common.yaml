@@ -14,6 +14,13 @@ linkerd-jaeger:
   webhook:
     collectorSvcAddr: collector.linkerd-viz:55678
   collector:
+    resources:
+      cpu:
+        limit: 500m
+        request: 200m
+      memory:
+        limit: 1Gi
+        request: 200m
     image:
       name: "ghcr.io/mindtastic/opentelemetry-transparency-processor"
       version: "449568c620ec43df1db7c5c915b28f9a596f137d"
