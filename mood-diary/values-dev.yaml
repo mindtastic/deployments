@@ -4,7 +4,6 @@ image:
   tag: "e6b35ca5bf1b89fd501de7bac52b109cc208f2d7"
 
 accessRule:
-  unauthenticated: true
   matchPath: "https://mood.api.dev.mindtastic.lol/diary"
   matchMethods: ["POST", "GET", "PUT", "DELETE"]
   kratosCheckSessionURL: http://kratos-public.kratos.svc.cluster.local/sessions/whoami
