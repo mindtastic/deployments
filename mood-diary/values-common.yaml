@@ -12,7 +12,7 @@ postgres:
 image:
   repository: ghcr.io/mindtastic/mood-diary
   pullPolicy: IfNotPresent
-  tag: "c80b0362efdd3b45e4f87c28bee285ecdceeb391"
+  tag: "8f6cab12b769e6b59455c092ca8e3d840cc0585c"
 
 accessRule:
   matchPath: "https://diary.api.dev.mindtastic.lol/diary"
