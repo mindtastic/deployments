@@ -34,7 +34,7 @@ deployment:
   # Can be either Deployment or DaemonSet
   kind: Deployment
   # Number of pods of the deployment (only applies when kind == Deployment)
-  replicas: 1
+  replicas: 3
   # Amount of time (in seconds) before Kubernetes will send the SIGKILL signal if Traefik does not shut down
   terminationGracePeriodSeconds: 60
   # The minimum number of seconds Traefik needs to be up and running before the DaemonSet/Deployment controller considers it available
@@ -493,13 +493,13 @@ serviceAccount:
 # Additional serviceAccount annotations (e.g. for oidc authentication)
 serviceAccountAnnotations: {}
 
-resources: {}
-  # requests:
-  #   cpu: "100m"
-  #   memory: "50Mi"
-  # limits:
-  #   cpu: "300m"
-  #   memory: "150Mi"
+resources:
+  requests:
+    cpu: "100m"
+    memory: "50Mi"
+  limits:
+    cpu: 200m
+    memory: 512Mi
 affinity: {}
 # # This example pod anti-affinity forces the scheduler to put traefik pods
 # # on nodes where no other traefik pods are scheduled.

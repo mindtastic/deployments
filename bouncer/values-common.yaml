@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: ghcr.io/mindtastic/bouncer
@@ -60,8 +60,8 @@ ingress:
 
 resources:
   limits:
-    cpu: 50m
-    memory: 128Mi
+    cpu: 200m
+    memory: 512Mi
   requests:
     cpu: 50m
     memory: 128Mi
